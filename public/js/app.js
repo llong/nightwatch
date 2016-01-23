@@ -2,17 +2,12 @@ var app = angular.module('app',['ui.router']);
 
 // Routing
 app.config(function($stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise("home");
+  $urlRouterProvider.otherwise("profile");
 
   $stateProvider
-    .state('home', {
-      url: '/',
+    .state('profile', {
+      url: '/profile',
       templateUrl: "partials/templates/profile.html",
-      controller: "mainController"
-    })
-    .state('login', {
-      url: "/login",
-      templateUrl: "partials/templates/login.html",
       controller: "mainController"
     })
     .state('device', {
@@ -21,7 +16,7 @@ app.config(function($stateProvider, $urlRouterProvider){
       controller: "mainController"
     })
     .state('edit-profile', {
-      url: "/edit-profile",
+      url: "/profile/edit",
       templateUrl: "partials/templates/edit-profile.html",
       controller: "mainController"
     });

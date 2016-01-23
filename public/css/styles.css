@@ -1,4 +1,4 @@
-body { padding-top: 3rem; }
+body { padding-top: 6rem; }
 
 .title-bar {
   width: 100%;
@@ -13,4 +13,8 @@ body { padding-top: 3rem; }
 
 .circle {
   border-radius: 50%;
+}
+
+.login-logo {
+  margin-bottom: 2rem;
 }

@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
-  <script src="./bower_components/angular/angular.js"></script>
-  <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="./angular/angular.js"></script>
+  <script src="./angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="js/app.js"></script>
 </head>
 <body ng-controller="mainController">
 
   <div class="dark title-bar">
-    <span class="title left">NIGHTWATCH</span>
+    <span class="title left"><a ui-sref="login">NIGHTWATCH</a></span>
     <span class="right"><a href="#">Menu</a></span>
   </div>
 
