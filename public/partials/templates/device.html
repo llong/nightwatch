@@ -1,7 +1,22 @@
 <div class="grid-container">
-  <div class="grid-block wrap medium-6 medium-offset-3">
-      <form-input class="grid-content small-12" label="Choose a Username"></form-input>
-      <form-input class="grid-content small-12" label="Choose a Password"></form-input>
+  <div class="grid-block wrap medium-10 medium-offset-1">
+      <h4 class="grid-content">Let’s register your devices so that you can begin monitoring your horses behaviors in real time.</h4>
+      <form-input class="grid-content small-12 medium-4" label="Device Serial Number"></form-input>
+      <div class="grid-content small-12 medium-5">
+      <button class="button success expand">Add Another Device</button>
+    </div>
+
+    <div class="grid-content small-12">
+      <label>Are you the primary caretaker for your horses?</label>
+        <div class="">
+          <input type="radio" name="caretaker" value="caretaker" id="caretaker">
+          <label for="caretaker">Yes</label>
+        </div>
+        <div class="">
+          <input class="small-2" type="radio" name="caretaker" value="not-caretaker" id="not-caretaker">
+          <label class="small-10" for="not-caretaker">No, I would like to create profiles for each of my caretakers</label>
+        </div>
+    </div>
   <div class="grid-content small-12 text-right">
     <button class="button secondary">Skip</button>
     <button class="button primary">Next</button>

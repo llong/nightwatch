@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nightwatch</title>
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+  <script src="./bower_components/angular/angular.js"></script>
+  <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body ng-controller="mainController">
+
+  <div class="dark title-bar">
+    <span class="title left">NIGHTWATCH</span>
+    <span class="right"><a href="#">Menu</a></span>
+  </div>
+
+<ui-view></ui-view>
+
+
+</body>
+</html>
