@@ -1,0 +1,30 @@
+label {
+  text-transform: uppercase;
+  font-size: .875rem;
+  font-weight: bold;
+  color: $medium-gray;
+}
+
+
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=tel],
+select {
+  height: 2rem;
+  border-radius: $border-radius;
+  border: 1px solid #ddd;
+  padding: 0 .75rem;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: inset 0 0 6px rgba($primary,.2);
+  }
+}
+
+.form-group p,
+.form-group p {
+  margin-top: 0;
+}
