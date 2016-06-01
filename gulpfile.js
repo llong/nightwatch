@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 /*global require:true */
+=======
+>>>>>>> 535d40a1a0770abd765ef90de0a3ac6163841e63
 'use strict';
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+<<<<<<< HEAD
 var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
 var cssnano = require('gulp-cssnano');
@@ -57,4 +61,17 @@ gulp.task('default',['sass','templates'], function(){
   gulp.watch('./src/javascripts/**/*.js',['scripts']);
   gulp.watch('./src/jade/**/*.jade',['jade-watch']);
   gulp.watch('./*.html').on('change', reload);
+=======
+var minifyCss = require('gulp-minify-css');
+
+gulp.task('sass', function () {
+  gulp.src('./public/bower_components/foundation-apps/scss/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(minifyCss({compatibility: 'ie9'}))
+    .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('default', function () {
+  gulp.watch('./public/bower_components/foundation-apps/scss/**/*.scss', ['sass']);
+>>>>>>> 535d40a1a0770abd765ef90de0a3ac6163841e63
 });
