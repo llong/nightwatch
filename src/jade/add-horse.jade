@@ -1,0 +1,110 @@
+.container
+  .card.diffused-shadow
+    div
+      .row(ng-hide="yesHorse")
+        .col.col-6-of-12.col-centered.text-center.m-b-2
+          img.img-responsive(src="/assets/images/nw_vertical_logo_tagline.png", alt="NIGHTWATCH logo" style="max-width:350px;")
+          h4 Would you like to assign your device to a horse?
+          h5 You can add the information for one of your horses now that can be assigned to this device.  You can always add or modify your horses and their device assignments at a later time.
+        
+        .col.col-3-of-12.col-push-3-of-12.m-t-1
+          p
+            button.btn.success-outline.stretch not now
+            
+        .col.col-3-of-12.m-t-1
+          p
+            button.btn.success.stretch yes
+      
+      .row
+        h3 horse profile
+        
+        .col.col-3-of-12.col-push-2-of-12
+          label breed
+          p
+            select.stretch
+              option Choose breed
+        
+        .col.col-3-of-12
+          label sex
+          p
+            input.stretch(type="text")
+        
+        .col.col-2-of-12
+          label date of birth
+          p
+            input.stretch(type="text")
+      
+      .row.m-t-2
+        .col.col-4-of-12.col-centered
+          label location
+          p
+            input(type="radio" name="location" value="myAddress")
+            span.m-l-1.m-r-3 My Address
+            input(type="radio" name="location" value="other")
+            span.m-l-1 Other
+          
+      .row.m-t-1
+        .col.col-4-of-12.col-push-1-of-12
+          label.required address
+          p
+            input.stretch(type="text")
+            
+        .col.col-3-of-12
+          label address 2
+          p
+            input.stretch(type="text")
+        
+        .col.col-3-of-12
+          label.required city
+          p
+            input.stretch(type="text")
+                
+        .col.col-3-of-12.col-push-2-of-12
+          label.required state/province
+          p
+            select.stretch
+              option Select State   
+        
+        .col.col-3-of-12
+          label.required country
+          p
+            select.stretch
+              option Select country   
+        
+        
+        .col.col-2-of-12
+          label.required postal code
+          p
+            input.stretch(type="text")
+            
+    div
+      .banner
+        span health
+      .col.col-12-of-12
+        label.required has your horse ever had prior abdominal surgery?
+        div
+          label.switch
+            input(type="checkbox")
+            .switch-btn
+      
+      .col.col-12-of-12
+        label.required within the past 12 months?
+        div
+          label.switch
+            input(type="checkbox")
+            .switch-btn
+      
+      .col.col-12-of-12
+        label.required is your horse on a routine(1-2x/year) dental program?
+        div
+          label.switch
+            input(type="checkbox")
+            .switch-btn
+        
+      .col.col-12-of-12
+        label.required is your horse on a routine(1-2x/year) vaccination/worming program?
+        div
+          label.switch
+            input(type="checkbox")
+            .switch-btn
+        

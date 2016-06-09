@@ -8,7 +8,7 @@ h4 {
 
 h5 {
   font-size: .875rem;
-  font-weight: 200;
+  font-weight: 400;
   color: $medium-gray;
 }
 
@@ -18,4 +18,13 @@ h5 {
 
 .text-right {
   text-align: right;
+}
+
+ul li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.text-muted {
+  color: $medium-gray;
 }

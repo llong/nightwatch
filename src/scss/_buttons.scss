@@ -30,4 +30,13 @@ button {
       background: darken($success,10%);
     }
   }
+  &.success-outline {
+    background: $white;
+    color: $success;
+    border: 1px solid $success;
+
+    &:hover {
+      background: darken($white,10%);
+    }
+  }
 }

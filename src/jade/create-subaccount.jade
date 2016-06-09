@@ -1,0 +1,58 @@
+.container(ng-controller="userController")
+  .card.diffused-shadow
+    .row
+      .col.col-8-of-12.col-centered.text-center.m-b-2
+        img(src="/assets/images/nw_vertical_logo_tagline.png", alt="NIGHTWATCH logo" style="max-width:350px;")
+        h4 Add users to your account
+        h5 You can add users to your account either as a #[strong manager] who can make any changes to your account except for viewing/changing your billing information or as a #[strong caretaker] who can view your horses but not make any changes.
+    
+    
+    .row.m-t-3(ng-model="skipButton" ng-hide="skipButton == false")
+      .col.col-4-of-12.col-push-2-of-12
+        p
+          button.btn.success-outline.stretch Skip for now
+          
+      .col.col-4-of-12
+        p
+          button.btn.success.stretch(ng-click="showUserForm()") add users
+
+    .row(ng-model="AddUserForm" ng-if="AddUserForm == true")
+      .col.col-4-of-12.col-push-2-of-12
+        label.required username
+        input.stretch(type="text")
+        
+      .col.col-3-of-12
+        label.required role
+        p
+          select.stretch(id="role")
+            option(value="manager") Manager
+            option(value="caretaker") Caretaker
+            
+      .col.col-4-of-12.col-push-2-of-12
+        label.required first name
+        p
+          input.stretch(type="text")
+        
+      .col.col-4-of-12
+        label.required last name
+        p
+          input.stretch(type="text")
+    
+      .col.col-4-of-12.col-push-2-of-12
+        label.required phone
+        p
+          input.stretch(type="text")
+        
+      .col.col-4-of-12
+        label email address
+        p
+          input.stretch(type="text")
+          
+      .row.m-t-3
+        .col.col-4-of-12.col-push-2-of-12
+          p
+            button.btn.primary.stretch save person
+            
+        .col.col-4-of-12
+          p
+            button.btn.success.stretch(ng-click="showUserForm()") finished adding people
