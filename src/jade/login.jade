@@ -1,18 +1,25 @@
 .container
   .card.diffused-shadow
-    .row
-      .col.col-6-of-12.col-push-3-of-12
+    form.row(ng-model="loginForm" name="loginForm" ng-submit="login()")
+      .col.col-6-of-12.col-push-3-of-12    
         p.text-center
           img.img-responsive(src="/assets/images/nw_vertical_logo_tagline.png" alt="NIGHTWATCH logo" style="max-width:350px;")
-        label username
+          p
+            .alert.success(ng-show="user.username") User successfully logged in as {{user.username}}
+            .alert.danger.text-center(ng-show="message === true" ng-model="message") Username and password don't match
+            
+        label.required username
         p 
-          input.stretch(type="text",placeholder="Enter Username")
+          input.stretch(type="text",ng-model="username" placeholder="Enter Username" required)
       .col.col-6-of-12.col-push-3-of-12
-        label Password
+        label.required Password
         p 
-          input.stretch(type="password",placeholder="Enter Password")
+          input.stretch(type="password", ng-model="password" placeholder="Enter Password" required)
       .col.col-6-of-12.col-centered
         p
-          button.btn.primary.stretch login
+          input.btn.primary.stretch(type="submit" ng-disabled="loginForm.$invalid" value="login")
+        
+    .row
+      .col.col-6-of-12.col-centered
         p
-          button.btn.success.stretch Sign Up
+          a.btn.success.stretch(href="/#/register") Register

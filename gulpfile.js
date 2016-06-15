@@ -11,6 +11,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var jade = require('gulp-jade');
 var compression = require('compression');
+var gutil = require('gulp-util');
 
 
 // Compile Sass into CSS and minify it
@@ -37,10 +38,13 @@ gulp.task('jade-watch', ['templates'], reload);
 //Compile JavaScripts and minify
 gulp.task('scripts', function(){
   return gulp.src([
-    './src/javascripts/app.js'
+    './src/javascripts/ng-storage.js',
+    './src/javascripts/app.js',
+    './src/javascripts/services/*.js',
+    './src/javascripts/controllers/*.js'
   ])
   .pipe(concat('app.js'))
-  .pipe(uglify())
+  .pipe(uglify().on('error',gutil.log))
   .pipe(gulp.dest('./assets/javascripts'))
   .pipe(reload({stream: true}));
 });

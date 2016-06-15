@@ -1,13 +1,16 @@
-var app = angular.module('app', ['ngRoute']);
+// Define App
+var app = angular.module('app', ['ngRoute','ngStorage']);
 
 
 app.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
   $routeProvider
     .when('/login', {
-      templateUrl: '/assets/partials/login.html'
+      templateUrl: '/assets/partials/login.html',
+      controller: 'loginController'
     })
-    .when('/create-username', {
-      templateUrl: '/assets/partials/create-username.html'
+    .when('/register', {
+      templateUrl: '/assets/partials/register.html',
+      controller: 'registerController'
     })
     .when('/create-name-password', {
       templateUrl: '/assets/partials/create-name-password.html'
@@ -28,63 +31,22 @@ app.config(['$routeProvider','$locationProvider',function($routeProvider,$locati
       templateUrl: '/assets/partials/create-group.html'
     })
     .when('/add-device', {
-      templateUrl: '/assets/partials/add-device.html'
+      templateUrl: '/assets/partials/add-device.html',
+      controller: 'deviceController'
     })
     .when('/add-horse', {
-      templateUrl: '/assets/partials/add-horse.html'
+      templateUrl: '/assets/partials/add-horse.html',
+      controller: 'horseController'
     })
     .when('/notification-settings', {
       templateUrl: '/assets/partials/notification-settings.html'
     })
     .otherwise({redirectTo:'/login'});
 
-  //  $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 }]);
 
-
-app.controller('userController',['$scope', function($scope){
-  $scope.showUserForm = function() {
-    $scope.skipButton = false;
-    $scope.AddUserForm = true;
-    console.log('click');
-  }
-}]);
-
-app.controller('groupController',['$scope', function($scope){
-  $scope.group = false;
-  $scope.groups = [];
-  $scope.assignGroupLink = '';
-
-  // Enables/Disables associated address form for group
-  $scope.assignGroup = function(){
-    if ($scope.group) {
-      $scope.group = false;
-      this.innerHTML = 'Don\'t Assign Address To Group';
-    } else {
-      $scope.group = true;
-      this.innerHTML = 'Don\'t Assign Address To Group';
-    }
-  }
-  // Adds a new group to user groups
-  $scope.addGroup = function(){
-    $scope.groups.push({
-      groupName: $scope.groupName,
-      address: $scope.address,
-      address2: $scope.address2,
-      city: $scope.city,
-      state: $scope.state,
-      country: $scope.country
-    });
-
-    // Clear form fields
-    $scope.groupName = '';
-    $scope.address = '';
-    $scope.address2 = '';
-    $scope.city = '';
-    $scope.state = '';
-    $scope.country = '';
-    // hide address fields
-    $scope.group = false;
-  }
-
-}]);
+app.run(['$http','$localStorage', function($http,$localStorage){
+  $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.token.access_token;
+  $http.defaults.headers.common.Accept = 'application/json;odata=verbose';
+}])

@@ -1,29 +1,30 @@
 .container(ng-controller="groupController")
   .card.diffused-shadow
     .row
-      .col.col-8-of-12.col-centered.text-center.m-b-2
+      .col.col-6-of-12.col-centered
         img(src="/assets/images/nw_vertical_logo_tagline.png", alt="NIGHTWATCH logo" style="max-width:350px;")
+  
+    .row(ng-hide="step1 == false" ng-model="step1")
+      .col.col-8-of-12.col-centered.text-center.m-b-2
         h4 Notification Settings
         h5 By creating a custom notification set you have full control over the following:
-    
-    
-    .row
+      
       .col.col-8-of-12.col-centered
         ul.text-muted
           li What days and times you will be notified
           li Which group members will be notified and in what order the will be notified
           li Threshold settings which dictate at what severity of alerts members will be notified
     
-    .row.m-t-3(ng-model="skipButton" ng-hide="skipButton == false")
-      .col.col-4-of-12.col-push-2-of-12
-        p
-          button.btn.success-outline.stretch Use defaults
-          
-      .col.col-4-of-12
-        p
-          button.btn.success.stretch customize
-          
-    .row
+      .row.m-t-3(ng-model="step2")
+        .col.col-4-of-12.col-push-2-of-12
+          p
+            button.btn.success-outline.stretch Use defaults
+            
+        .col.col-4-of-12
+          p
+            button.btn.success.stretch(ng-click="step2 = true;step1 = false") customize
+            
+    .row(ng-show="step2")
       .col.col-8-of-12.col-centered.text-center.m-b-2
         h4 Setup Notifications Schedule
         h5 By default you will be notified every day of the week during all hours
@@ -99,43 +100,43 @@
             input.stretch(type="text")
             
       .col.col-4-of-12.col-centered
-        button.btn.success.stretch next
+        button.btn.success.stretch(ng-click="step3 = true;step2 = false") next
         
-    .row
-      
-    .col.col-8-of-12.col-centered.text-center.m-b-2
-      h4 Who should be notified and in what order?
-      h5 Members can be added to specific groups who will be notified at the same time. You can also decide if they should be notified via text, voice or by both methods. 
-    
-    .col.col-5-of-12
-      label users
-      ul.drag-list
-        li John Doe
-        li John Does
-        li John Does
-        li John Does
+    .row(ng-show="step3" ng-model="step3")
         
-    .col.col-7-of-12
-      label Drag members here
+      .col.col-8-of-12.col-centered.text-center.m-b-2
+        h4 Who should be notified and in what order?
+        h5 Members can be added to specific groups who will be notified at the same time. You can also decide if they should be notified via text, voice or by both methods. 
       
-      p.text-muted.m-t-1 #[small Choose whether you would like to set their notification preference to text or voice by clicking the icons next to each name.]
-      
-      .drag-target
-        .primary-bucket
-          label first to be contacted
-          ul
-            li
-              p Mr. Account Owner
-              p (555) 123 - 45678
-              p (555) 321 - 9876
+      .col.col-5-of-12
+        label users
+        ul.drag-list
+          li John Doe
+          li John Does
+          li John Does
+          li John Does
           
-        .secondary-bucket
-          label second to be contacted
-          p.text-muted #[small Drag users here to add to this group]
+      .col.col-7-of-12
+        label Drag members here
         
-        .add-bucket
-          p.text-muted.text-center Add more
+        p.text-muted.m-t-1 #[small Choose whether you would like to set their notification preference to text or voice by clicking the icons next to each name.]
         
-    .col.col-4-of-12.col-centered.m-t-3
-      button.btn.success.stretch next
-    
+        .drag-target
+          .primary-bucket
+            label first to be contacted
+            ul
+              li
+                p Mr. Account Owner
+                p (555) 123 - 45678
+                p (555) 321 - 9876
+            
+          .secondary-bucket
+            label second to be contacted
+            p.text-muted #[small Drag users here to add to this group]
+          
+          .add-bucket
+            p.text-muted.text-center Add more
+          
+      .col.col-4-of-12.col-centered.m-t-3
+        button.btn.success.stretch next
+      

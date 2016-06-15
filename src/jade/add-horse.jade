@@ -1,9 +1,11 @@
 .container
   .card.diffused-shadow
     div
+      .row
+        .col.col-centered.text-center
+          img.img-responsive(src="/assets/images/nw_vertical_logo_tagline.png", alt="NIGHTWATCH logo" style="max-width:350px;")
       .row(ng-hide="yesHorse")
         .col.col-6-of-12.col-centered.text-center.m-b-2
-          img.img-responsive(src="/assets/images/nw_vertical_logo_tagline.png", alt="NIGHTWATCH logo" style="max-width:350px;")
           h4 Would you like to assign your device to a horse?
           h5 You can add the information for one of your horses now that can be assigned to this device.  You can always add or modify your horses and their device assignments at a later time.
         
@@ -13,21 +15,38 @@
             
         .col.col-3-of-12.m-t-1
           p
-            button.btn.success.stretch yes
-      
+            button.btn.success.stretch(ng-click="yesHorse=true") yes
+    form(ng-show="yesHorse") 
       .row
-        h3 horse profile
+        h4.text-center.m-b-3 Let's create a profile for your horse
+        .col.col-4-of-12.col-push-2-of-12
+          label.required registered name
+          p
+            input.stretch(type="text" ng-model="registeredName" required)
+        
+        .col.col-4-of-12
+          label nickname (optional)
+          p
+            input.stretch(type="text" ng-model="nickName")
+    
+      .row
         
         .col.col-3-of-12.col-push-2-of-12
-          label breed
+          label.required breed
           p
-            select.stretch
+            select.stretch(ng-model="breed" required)
               option Choose breed
+              option(value="Horse") Horse
+              option(value="Pony") Pony
         
         .col.col-3-of-12
-          label sex
+          label.required sex
           p
-            input.stretch(type="text")
+            select.stretch(ng-model="sex")
+              option Choose Sex
+              option(value="Mare/Filly") Mare/Filly
+              option(value="Stallion/Colt") Stallion/Colt
+              option(value="Gelding") Gelding
         
         .col.col-2-of-12
           label date of birth
@@ -77,34 +96,142 @@
           p
             input.stretch(type="text")
             
-    div
+    
       .banner
-        span health
-      .col.col-12-of-12
-        label.required has your horse ever had prior abdominal surgery?
-        div
-          label.switch
-            input(type="checkbox")
-            .switch-btn
-      
-      .col.col-12-of-12
-        label.required within the past 12 months?
-        div
-          label.switch
-            input(type="checkbox")
-            .switch-btn
-      
-      .col.col-12-of-12
-        label.required is your horse on a routine(1-2x/year) dental program?
-        div
-          label.switch
-            input(type="checkbox")
-            .switch-btn
+        span HEALTH
+      .banner-content
+        .col.col-12-of-12
+          label.required has your horse ever had prior abdominal surgery?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
         
-      .col.col-12-of-12
-        label.required is your horse on a routine(1-2x/year) vaccination/worming program?
-        div
-          label.switch
-            input(type="checkbox")
-            .switch-btn
+        .col.col-12-of-12
+          label.required within the past 12 months?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
         
+        .col.col-12-of-12
+          label.required is your horse on a routine(1-2x/year) dental program?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+          
+        .col.col-12-of-12
+          label.required is your horse on a routine(1-2x/year) vaccination/worming program?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+      
+      // HABITS
+      .banner
+        span HABITS
+      .banner-content.hide
+        .col.col-12-of-12
+          label Does your hosrse crib?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+              
+        .col.col-12-of-12
+          label does your horse windsuck?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+                    
+        .col.col-12-of-12
+          label does your horse weave?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+                          
+        .col.col-12-of-12
+          label does your horse routinely show signs of colic?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+              
+        .col.col-12-of-12
+          label does your horse routinely get cast in their stall?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+              
+            
+      // ROUTINE
+      div.banner
+        span ROUTINE (optional)
+      .banner-content.hide
+        .col.col-12-of-12
+          label how is your horse stabled?
+          p
+            select(ng-model="stabled")
+              option(value="Turned Out") Turned out
+              option(value="Stalled &amp; Turned Out") Stalled &amp; Turned out
+              option(value="Stalled") Stalled
+              
+        .col.col-12-of-12
+          label how often is your horse turned out and allowed to graze?
+          p
+            select(ng-model="turnOut")
+              option(value="Always") Always
+              option(value="Most Days") Most Days
+              option(value="Seasonally") Seasonally
+              option(value="Never") Never
+                    
+        .col.col-12-of-12
+          label is your horse checked-on by anyone overnight?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+                          
+        .col.col-12-of-12
+          label is your horse used for competitions (races, shows, etc)?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+              
+        .col.col-12-of-12
+          label does your horse travel more than 6x/year to a competition?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+              
+        .col.col-12-of-12
+          label does your horse travel more than 6x/year to a competition?
+          div
+            label.switch
+              input(type="checkbox")
+              .switch-btn
+        
+        .col.col-12-of-12
+          label which of these best describes your type of horse
+          p
+            select(ng-model="turnOut")
+              option(value="Race") Race
+              option(value="Sport") Sport
+              option(value="Rodeo") Rodeo
+              option(value="Recreatioin") Recreation
+      
+      .row.m-t-3
+        .col.col-4-of-12.col-push-2-of-12
+          a.btn.success-outline.stretch(href="#") skip for now
+        
+        .col.col-4-of-12
+          input.btn.success.stretch(type="submit" ng-click="addHorse()" value="Add Horse")
+    
+
+script(src="/assets/javascripts/accordion.js")

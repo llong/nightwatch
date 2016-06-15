@@ -1,4 +1,6 @@
-button {
+
+
+input[type=submit],button {
   border: none;
 }
 
@@ -12,6 +14,13 @@ button {
   font-weight: 200;
   cursor: pointer;
   color: $primary;
+  text-align: center;
+  line-height: 2rem;
+
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
 
   &.primary {
     background: $primary;
