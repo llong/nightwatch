@@ -4,8 +4,6 @@ function($scope,$http,$localStorage,$location,authenticate){
 
   var API = authenticate;
 
-
-
   $scope.getData = function(){
     $http.get(API + 'api/account',{
 
@@ -15,4 +13,9 @@ function($scope,$http,$localStorage,$location,authenticate){
       console.log($scope.userData);
     });
   };
+
+  // Hamburger Menu
+  $scope.toggleMenu = function(){
+    $scope.expanded = !$scope.expanded;
+  }
 }]);

@@ -10,7 +10,7 @@
       .col.col-4-of-12.col-push-2-of-12
         label.required device serial
         p
-          input.stretch(type="text" ng-model="serialNumber" required ng-minlength="12" ng-maxlength="12")
+          input.stretch(type="text" ng-model="serialNumber" required ng-minlength="12" maxlength="12" ng-maxlength="12" ng-pattern="regex")
           
       .col.col-4-of-12
         label device nickname

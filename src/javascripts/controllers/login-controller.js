@@ -8,14 +8,18 @@ app.controller('loginController', [
         username: $scope.username,
         password: $scope.password
       })
-      .then(function(response,error){
+      .then(function(response){
         $scope.userData = response.data;
         $localStorage.token = response.data;
-        $location.path('/add-phone');
+
         console.log(response);
-      }, function(response){
-          $scope.message = true;
+      })
+      .catch(function(err){
+        throw err;
+        $scope.message = true;
+      })
+      .finally(function(){
+        $location.path('/');
       });
     }
-  }
-])
+}]);

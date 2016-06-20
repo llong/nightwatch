@@ -1,0 +1,237 @@
+
+// ************ NAVBAR *********************
+.navbar {
+  display: block;
+  height: 3rem;
+  width: 100%;
+  background: $white;
+  position: fixed;
+  top: 0;
+  line-height: 3rem;
+  padding: 0 1rem;
+  z-index: 2;
+
+  img {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+
+    li {
+      display: inline-block;
+      padding: 0;
+    }
+  }
+
+  .toggle-btn {
+    display: none;
+    color: $light-gray;
+    font-size: 2rem;
+    vertical-align: middle;
+  }
+}
+
+.navbar a {
+  color: $light-gray;
+  text-transform: uppercase;
+  font-size: .875rem;
+  letter-spacing: 1px;
+  display: inline-block;
+  height: 3rem;
+  padding: 0 1rem;
+
+  &:hover {
+    background: darken($white,3%);
+  }
+
+  &.active {
+    //background: darken($white,3%);
+    border-bottom: .25rem solid $primary;
+  }
+}
+
+.divider {
+  display: inline-block;
+  width: 1px;
+  height: 2.25rem;
+  background: rgba($light-gray,.1);
+  vertical-align: middle;;
+  margin: 0 1rem;
+  line-height: normal;
+}
+
+@media (max-width:768px) {
+  .navbar .nav-menu {
+    position: fixed;
+    display: inline-block;
+    background: #FFF;
+    top: 3rem;
+    transform: translateX(136px);
+    transition: all 250ms ease-out;
+  }
+
+  .navbar .nav-menu.expanded {
+    z-index: 3;
+    background: $white;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+    border-bottom-left-radius: $border-radius;
+    transform: translateX(6px);
+  }
+
+  .navbar .nav-menu > li {
+    display: block;
+    margin: 0;
+  }
+
+  .navbar .toggle-btn {
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+
+// *************** /NAVBAR *********************
+
+
+// ***************** GAUGE *********************
+.gauge {
+  width: 250px;
+  height: 250px;
+  background: url('/assets/images/new_wheel@2x.png');
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  margin: auto;
+
+  img {
+    transform: scale(.65);
+    position: absolute;
+    top: 1.5rem;
+    left: -.5rem;
+    transition: all 250ms;
+  }
+}
+
+div.gauge-edi.text-right {
+  vertical-align: top;
+  > div {
+    font-size: 2rem;
+  }
+}
+
+// ************ HORSE LIST *********************
+.horse-list {
+  float: left;
+  width: 40%;
+  font-size: .875rem;
+}
+
+.horse-row {
+  display: table;
+  width: 100%;
+  border-bottom: 1px solid $lightest-gray;
+}
+
+.horse-row > div {
+  display: table-cell;
+  vertical-align: middle;
+  padding: .5rem 0;
+
+}
+
+.horse-row:last-of-type {
+  border: none;
+}
+
+.avatar {
+  display: inline-block;
+  width: 2.25rem;
+  height: 2.25rem;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.edi-circle {
+  display: inline-block;
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 50%;
+  //border: 2px solid $lightest-gray;
+  text-align: center;
+  line-height: 2.25rem;
+  vertical-align: top;
+  font-weight: bold;;
+}
+
+.metrics {
+  margin-left: 1rem;
+  float: left;
+  width: calc(60% - 1rem);
+
+  [class^='nw-'] {
+    font-size: 1.25rem;
+    vertical-align: text-bottom;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .horse-list,.metrics {
+    display: block;
+    width: 100%;
+    float: none;
+    margin: .5rem 0;
+  }
+}
+
+[class^='label-'],[class*=' label-'],{
+  padding: .75rem;
+  display: inline-block;
+  border-radius: $border-radius;
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 $medium-gray;
+}
+
+.label-success {
+  background: $success;
+  color: #FFF;
+}
+
+.label-warning {
+  background: $warning;
+  color: $black
+}
+
+.label-danger {
+  background: $danger;
+  color: #FFF;
+}
+
+// ************ METRICS *********************
+
+.progress-bar {
+  position: relative;
+  background-image: linear-gradient(-270deg,#FF2600 0,#FFEB00 30%,#5cb85c 40%,#5cb85c 60%,#FFEB00 70%,#FF2600 100%);
+  //opacity: .6;
+  height: .5rem;
+  border-radius: 4px;
+}
+
+.horse-row > .metric-display {
+  width: 5rem;
+  padding-left: 1rem;
+}
+
+.progress-bar .nw-triangle-up {
+  position: absolute;
+  display: inline-block;
+  transform: translateY(.25rem);
+  margin-left: -.65rem;
+  left: 0;
+  transition: all 250ms ease-out;
+}

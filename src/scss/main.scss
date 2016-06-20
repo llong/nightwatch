@@ -4,6 +4,9 @@
 @import 'buttons';
 @import 'grid';
 @import 'notifications';
+@import 'dashboard';
+
+html,body { margin: 0; padding: 0; }
 
 html {
   height: 100%;
@@ -23,8 +26,10 @@ p {
 
 .container {
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
+  padding: 0 1rem;
   margin: auto;
+  position: relative;
 }
 
 .stretch {
@@ -57,7 +62,7 @@ p {
 
 .clearfix:after {
   content: "";
-  display: table;
+  display: block;
   clear: both;
 }
 
@@ -107,4 +112,20 @@ p {
 
 .m-r-3 {
   margin-right: 3rem;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.inline-block {
+  display: inline-block;
 }

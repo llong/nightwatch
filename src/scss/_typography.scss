@@ -26,5 +26,17 @@ ul li {
 }
 
 .text-muted {
-  color: $medium-gray;
+  color: $light-gray;
+}
+
+.text-success {
+  color: $success;
+}
+
+.text-warning {
+  color: $warning;
+}
+
+.text-danger {
+  color: $danger;
 }

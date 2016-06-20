@@ -1,9 +1,14 @@
 // Define App
 var app = angular.module('app', ['ngRoute','ngStorage']);
 
-
 app.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
+
+
   $routeProvider
+    .when('/', {
+      templateUrl: '/assets/partials/dashboard.html',
+      controller: 'dashboardController'
+    })
     .when('/login', {
       templateUrl: '/assets/partials/login.html',
       controller: 'loginController'
@@ -46,7 +51,11 @@ app.config(['$routeProvider','$locationProvider',function($routeProvider,$locati
     //$locationProvider.html5Mode(true);
 }]);
 
-app.run(['$http','$localStorage', function($http,$localStorage){
-  $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.token.access_token;
-  $http.defaults.headers.common.Accept = 'application/json;odata=verbose';
-}])
+  app.run(['$http','$localStorage',function($http,$localStorage){
+    if ($localStorage.token){
+        var token = $localStorage.token;
+        $http.defaults.headers.common.Authorization = 'Bearer ' + token.access_token;
+        $http.defaults.headers.common['Accept'] = 'application/json;odata=verbose';
+    }
+
+  }]);

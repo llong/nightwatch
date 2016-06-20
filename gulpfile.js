@@ -12,6 +12,7 @@ var reload = browserSync.reload;
 var jade = require('gulp-jade');
 var compression = require('compression');
 var gutil = require('gulp-util');
+var ngAnnotate = require('gulp-ng-annotate');
 
 
 // Compile Sass into CSS and minify it
@@ -44,6 +45,7 @@ gulp.task('scripts', function(){
     './src/javascripts/controllers/*.js'
   ])
   .pipe(concat('app.js'))
+  .pipe(ngAnnotate())
   .pipe(uglify().on('error',gutil.log))
   .pipe(gulp.dest('./assets/javascripts'))
   .pipe(reload({stream: true}));

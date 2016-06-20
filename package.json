@@ -21,6 +21,7 @@
     "gulp-uglify": "^1.5.3"
   },
   "dependencies": {
+    "gulp-ng-annotate": "^2.0.0",
     "gulp-util": "^3.0.7"
   }
 }

@@ -1,0 +1,119 @@
+style.
+  body {
+    background: #f2f2f2;
+    padding-top: 4rem;
+  }
+  
+script(src="/assets/javascripts/hamburger-menu.js")
+
+nav.navbar
+  div.float-right
+    .toggle-btn.nw-menu(ng-click="toggleMenu()")
+    ul.nav-menu(ng-model="toggleMenu" ng-class="{'expanded': expanded}")
+      li
+        a.active(href="#") dashboard
+      li
+        a(href="#") my devices
+      li
+        a(href="#") my horses
+    .divider
+    span.m-r-1 John
+    img.circle(src="http://fillmurray.com/36/36", alt="avatar")
+
+
+.container
+
+    .card.horse-list
+      p(ng-show="loading == true") Loading Horses
+      
+      div.horse-row(ng-repeat="horse in horses" ng-click="getHorse(horse)" ng-if="horses.length >= 1")
+        div(style="width:2.5rem")
+          .avatar(style="background-image:url({{horse.thumbnail_url}})")
+        div
+          span(ng-bind="horse.registered_name")
+          br
+          span.nw-speaker_phone.text-muted
+          span.text-muted(ng-repeat="device in horse.devices" ng-bind="device.serial_number")
+          span.text-muted(ng-if="horse.devices.length === 0") No device assigned
+        div.text-right
+          div(ng-bind="horse.edi_score" ng-class="ediColor(horse)")
+              
+    .card.metrics
+      h5.text-center(ng-show="!activeHorse") Select a horse to view its metrics
+      div(ng-if="activeHorse")
+          .horse-row
+            div(style="width:2.5rem")
+              .avatar(style="background-image:url({{activeHorse.thumbnail_url}})")
+            div
+              h3(ng-bind="activeHorse.registered_name")
+            div.text-right
+            //  span #[small Last Updated]
+            //  br
+            //  span(ng-bind="metrics.edi_score" ng-class="ediColor(horse)")
+          .horse-row
+            div.p-t-1
+              span EDI&trade;
+              span.nw-help
+          
+          .horse-row
+            .gauge
+              img(src="assets/images/neddle_1@2x.png", alt="gauge needle", style="transform: rotate({{activeHorse.edi_score * 18.0}}deg) scale(.65)")
+            .gauge-edi.text-right
+              div(ng-bind="activeHorse.edi_score" ng-class="ediColor(activeHorse)")
+          
+          div.m-t-3
+            span.nw-heart_rate
+            span &nbsp; Heart Rate
+            .horse-row
+              div
+                .progress-bar(value="47" max="100")
+                 .nw-triangle-up(style="left:{{metrics.bio[0].heart_rate}}%")
+              div.metric-display.text-center
+                h4(ng-bind="metrics.bio[0].heart_rate")
+                small (beats/min)
+          
+          div.m-t-1
+            span.nw-respiratory_rate
+            span &nbsp; Respiratory Rate
+            .horse-row
+                div
+                  .progress-bar(value="47" max="100")
+                    .nw-triangle-up(style="left:{{metrics.bio[0].respiratory_rate}}%")
+                div.metric-display.text-center
+                  h4(ng-bind="metrics.bio[0].respiratory_rate")
+                  small (beats/min)
+          
+          div.m-t-1
+            span.nw-rise_falls
+            span &nbsp; Rise Falls
+            .horse-row
+                div
+                  .progress-bar(value="47" max="100")
+                    .nw-triangle-up(style="left:{{metrics.behavior[0].fall_rise_count}}%")
+                div.metric-display.text-center
+                  h4(ng-bind="metrics.behavior[0].fall_rise_count")
+                  small (beats/min)
+          
+          div.m-t-1
+            span.nw-laying_down
+            span &nbsp; Laying Down
+            .horse-row
+                div
+                  .progress-bar(value="47" max="100")
+                    .nw-triangle-up(style="left:{{metrics.behavior[0].lying_time}}%")
+                div.metric-display.text-center
+                  h4(ng-bind="metrics.behavior[0].lying_time")
+                  small (beats/min)
+          
+          div.m-t-1
+            span.nw-rolls
+            span &nbsp; Rolls
+            .horse-row
+                div
+                  .progress-bar(value="47" max="100")
+                    .nw-triangle-up(style="left:{{metrics.behavior[0].roll_count}}%")
+                div.metric-display.text-center
+                  h4(ng-bind="metrics.behavior[0].roll_count")
+                  small (beats/min)
+          
+          
