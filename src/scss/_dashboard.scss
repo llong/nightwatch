@@ -36,6 +36,36 @@
   }
 }
 
+.user-menu {
+  .nav-menu{
+    display: inline-block;
+    position: fixed;
+    top: 3rem;
+    right: 0;
+    z-index: 4;
+    background: $white;
+    height: 1px;
+    overflow: hidden;
+    transition: all 250ms ease-out;
+  }
+
+  .nav-menu li, .nav-menu li a {
+    display: block;
+  }
+
+  .nav-menu.expanded {
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+    border-bottom-left-radius: $border-radius;
+    height: auto;
+    right: 0;
+  }
+}
+
+.user-toggle {
+  cursor: pointer;
+  display: inline-block;
+}
+
 .navbar a {
   color: $light-gray;
   text-transform: uppercase;
@@ -71,6 +101,7 @@
     display: inline-block;
     background: #FFF;
     top: 3rem;
+    right: 0;
     transform: translateX(136px);
     transition: all 250ms ease-out;
   }
@@ -130,13 +161,28 @@ div.gauge-edi.text-right {
   font-size: .875rem;
 }
 
+.horse-header {
+  display: table;
+  background: $primary;
+  color: $white;
+  width: calc(100% + 2rem);
+  margin: -1rem -1rem 1rem -1rem;
+  border-radius: $border-radius $border-radius 0 0;
+  padding: .5rem 1rem;
+
+  a {
+    color: $white;
+  }
+}
+
 .horse-row {
   display: table;
   width: 100%;
   border-bottom: 1px solid $lightest-gray;
 }
 
-.horse-row > div {
+.horse-row > div,
+.horse-header > div {
   display: table-cell;
   vertical-align: middle;
   padding: .5rem 0;

@@ -40,6 +40,7 @@ gulp.task('jade-watch', ['templates'], reload);
 gulp.task('scripts', function(){
   return gulp.src([
     './src/javascripts/ng-storage.js',
+    './src/javascripts/satellizer.js',
     './src/javascripts/app.js',
     './src/javascripts/services/*.js',
     './src/javascripts/controllers/*.js'

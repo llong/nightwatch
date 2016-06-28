@@ -1,5 +1,11 @@
 h1,h2,h3,h4,h5 { margin: 0; }
 
+h3 {
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: $black;
+}
+
 h4 {
   font-size: 1.25rem;
   font-weight: 400;
@@ -18,6 +24,10 @@ h5 {
 
 .text-right {
   text-align: right;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
 }
 
 ul li {

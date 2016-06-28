@@ -1,7 +1,28 @@
 app.controller('horseController', [
-  '$scope','$http','$localStorage','$location','authenticate',
-  function($scope,$http,$localStorage,$location,authenticate){
-    var API = authenticate;
+  '$scope','$http','$localStorage','$location','API','$route','$routeParams',
+  function($scope,$http,$localStorage,$location,API,$route,$routeParams){
+    var API = API;
+    var vm = this;
+    vm.loading = true;
+    $scope.$route = $route;
+    // *************** GET **********************
+    vm.getHorses = function(){
+      $http.get(API + 'api/horse')
+      .then(function(res){
+        vm.horses = res.data;
+        vm.whichHorse = $routeParams.id;
+      })
+      .catch(function(err){
+        if(err.status === 401){
+          $location.path('/login')
+        }
+      })
+      .finally(function(){
+        vm.loading = false;
+      })
+    }
+
+    vm.getHorses();
 
     // *************** POST **********************
     $scope.addHorse = function(){

@@ -1,0 +1,30 @@
+style.
+  body {
+    background: #f2f2f2;
+    padding-top: 4rem;
+  }
+  
+script(src="/assets/javascripts/hamburger-menu.js")
+
+nav.navbar
+  div.float-right
+    .toggle-btn.nw-menu(ng-click="toggleMenu()")
+    ul.nav-menu(ng-model="toggleMenu" ng-class="{'expanded': expanded}")
+      li
+        a(href="/#/" ng-class="{active: $route.current.activetab == 'dashboard'}") dashboard
+      li
+        a(href="/#/devices" ng-class="{active: $route.current.activetab == 'devices'}") my devices
+      li
+        a(href="/#/horses" ng-class="{active: $route.current.activetab == 'horses'}") my horses
+    .divider
+    span.user-toggle(ng-click="userMenu()")
+      span(ng-bind="user.profile.first_name")
+      span.m-r-1.nw-keyboard_arrow_down
+      img.circle(src="http://fillmurray.com/36/36", alt="avatar")
+      
+    .user-menu
+      ul.nav-menu(ng-model="userMenu" ng-class="{'expanded' : userExpanded}")
+        li
+          a(href="/#/user" ng-click="userMenu()") My Account
+        li
+          a(href="javascript:void(0)" ng-click="$parent.signOut();userMenu()") Sign Out

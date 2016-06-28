@@ -1,6 +1,7 @@
-app.controller('registerController',['$scope','$http','authenticate', function($scope,$http,authenticate){
+app.controller('registerController',['$scope','$http','API',
+function($scope,$http,API){
 
-  var API = authenticate;
+  var API = API;
 
   // Register New User
   $scope.register = function(res,err){
@@ -11,10 +12,9 @@ app.controller('registerController',['$scope','$http','authenticate', function($
         salutation: $scope.salutation,
         firstName: $scope.firstName,
         lastName: $scope.lastName,
-        password: $scope.password
+        password: $scope.password,
+        password2: $scope.password2
       }).then(function(res){
-        console.log(res);
-      }, function(res){
         console.log(res);
       })
     }

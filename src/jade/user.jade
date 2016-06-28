@@ -1,0 +1,157 @@
+ng-include(src="'./assets/partials/navbar.html'")
+
+.container
+  .card
+    .horse-row
+      // Add user avatar once file upload is working
+      //div(style="width:144px;")
+        //img.circle(src="http://fillmurray.com/128/128", alt="avatar")
+      div(style="vertical-align:top;")
+        h4.text-uppercase My Account Information
+        .row.m-t-1
+          .col.col-2-of-12
+            label salutation
+            p
+              select.stretch(ng-model="user.profile.title")
+                option(value="Mr.") Mr.
+                option(value="Mrs.") Mrs.
+                option(value="Ms.") Ms.
+                option(value="Dr.") Dr.
+          .col.col-3-of-12
+            label.required first name
+            p
+              input.stretch(type="text" ng-model="user.profile.first_name")
+          .col.col-3-of-12
+            label.required last name
+            p
+              input.stretch(type="text" ng-model="user.profile.last_name")
+          .col.col-3-of-12
+            label &nbsp;
+            p
+              button.btn.primary.stretch(href="javascript:void()" ng-click="user.updateProfile()") update profile
+          
+  .card.m-t-1(ng-controller="phoneController as phones")
+    h4.text-muted.text-uppercase phone numbers
+    .col.m-t-1(ng-hide="phones.loadingPhones === false")
+      .spinner 
+        span Loading Phones
+    .row.m-t-1
+      .col.col-4-of-12.m-b-1(ng-repeat="phone in phones.phones")
+          div.number-circle.m-r-1 {{$index + 1}}
+          div.inline-block(ng-bind="phone.full_phone_number")
+          a.m-l-1.nw-cross(href="" ng-click="phones.deletePhone(phone)")
+    form(name="addPhoneForm" ng-submit="phones.addPhone()").row.m-t-2   
+      .col.col-3-of-12
+        label.required country
+        p
+          select.stretch(ng-model="phones.code" required)
+            option(value="US" selected="selected") United States
+            option(ng-repeat="country in user.countries" value="{{country.code}}") {{country.name}}
+      
+      .col.col-2-of-12
+        label.required area code
+        p
+          input.stretch(type="text" ng-model="phones.areaCode" required)
+      .col.col-3-of-12
+        label.required number
+        p
+          input.stretch(type="text" ng-model="phones.number" required)
+      .col.col-3-of-12
+        label &nbsp;
+        p
+          button.btn.primary.stretch(href="javascript:void(0)" ng-click="phone.addPhone()" ng-disabled="addPhoneForm.$invalid") Add phone
+  
+  .card.m-t-1
+    h4.text-muted.text-uppercase email addresses
+    .row.m-t-1.m-b-1
+      .col
+        .spinner(ng-hide="loadingEmails == false") 
+          span Loading Emails
+      .col.col-4-of-12(ng-repeat="email in user.emails" ng-show="loadingEmails == false")
+        p
+          .m-r-1.number-circle(ng-bind="$index + 1")
+          span(ng-bind="email.email_address")
+          a.m-l-1.nw-cross(href="javascript:void(0)" ng-click="user.deleteEmail(email)")
+    .row.m-t-2
+      form(name="emailForm" ng-submit="user.addEmail()")
+        .col.col-4-of-12
+          p
+            input.stretch(type="email" placeholder="Add another email address" ng-model="user.emailAddress" required)
+        .col.col-3-of-12(style="vertical-align:middle;")
+          p
+            input.btn.primary.stretch(type="submit" ng-disabled="emailForm.$invalid" value="add email")
+    
+  
+  .card.m-t-1
+    h4.text-muted.text-uppercase shipping address
+    .row.m-t-2.m-b-1
+      .col.col-3-of-12
+        label.required address
+        p
+          input.stretch(type="text")
+      
+      .col.col-3-of-12
+        label address 2
+        p
+          input.stretch(type="text")
+    .row
+      .col.col-3-of-12
+        label city
+        p
+          input.stretch(type="text")
+      
+      .col.col-3-of-12
+        label state
+        p
+          select.stretch(name="")
+            option(value="state")
+      
+      .col.col-2-of-12
+        label postal code
+        p
+          input.stretch(type="text")
+    .row    
+      .col.col-3-of-12
+        label country
+        p
+          select.stretch(name="")
+            option(value="US" selected="selected") United States
+            option(ng-repeat="country in user.countries" value="{{country.code}}") {{country.name}}
+            
+
+  .card.m-t-1.m-b-1
+    h4.text-muted.text-uppercase billing address
+    .row.m-t-2.m-b-1
+      .col.col-3-of-12
+        label.required address
+        p
+          input.stretch(type="text")
+      
+      .col.col-3-of-12
+        label address 2
+        p
+          input.stretch(type="text")
+    .row
+      .col.col-3-of-12
+        label city
+        p
+          input.stretch(type="text")
+      
+      .col.col-3-of-12
+        label state
+        p
+          select.stretch(name="")
+            option(value="state")
+      
+      .col.col-2-of-12
+        label postal code
+        p
+          input.stretch(type="text")
+    .row    
+      .col.col-3-of-12
+        label country
+        p
+          select.stretch(name="")
+            option(value="state")          
+            
+  

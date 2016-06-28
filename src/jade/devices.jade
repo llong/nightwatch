@@ -1,0 +1,29 @@
+ng-include(src="'./assets/partials/navbar.html'")
+
+.container
+  .row
+    // Add Devices
+    .col.col-4-of-12
+      form.card(name="deviceForm" novalidate ng-submit="device.addDevice()")
+        h4.text-uppercase.text-muted add device
+        hr.m-b-1
+        p
+          label.required device serial
+          input.stretch(type="text" maxlength=12 ng-model='device.serialNumber' required ng-minlength="12" ng-maxlength="12" ng-pattern="regex")
+        p
+          label device nickname
+          input.stretch(type="text" ng-model='device.nickName' placeholder='Optional')
+        p
+          input.btn.primary.stretch(type="submit" ng-disabled="deviceForm.$invalid")
+        
+    // List my Devices
+    .col.col-8-of-12
+      .card
+        h3 My Devices
+        hr
+        .horse-row(ng-repeat="device in device.devices")
+          div
+            span(ng-bind="device.serial_number")
+          div
+            span(ng-bind="device.nick_name")
+    

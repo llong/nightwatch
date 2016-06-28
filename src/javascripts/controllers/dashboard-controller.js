@@ -1,15 +1,14 @@
 app.controller('dashboardController', [
-  '$scope','$http','$localStorage','$location','authenticate',
-  function($scope,$http,$localStorage,$location,authenticate){
-    var API = authenticate;
+  '$scope','$http','$localStorage','$location','API','$route',
+  function($scope,$http,$localStorage,$location,API,$route){
+    var API = API;
+    $scope.$route = $route;
+    $scope.sortType     = 'edi_score'; // set the default sort type
+    $scope.sortReverse  = true;  // set the default sort order
 
     // *************** POST **********************
     var getHorses = function(){
-      $http.get(API + 'api/horse',{
-        headers: {
-          Authorization: 'Bearer ' + $localStorage.token.access_token
-        }
-      })
+      $http.get(API + '/api/horse')
       .then(function(res){
         $scope.horses = res.data;
         console.log($scope.horses);
@@ -17,7 +16,7 @@ app.controller('dashboardController', [
         $scope.nickName = '';
       })
       .catch(function(err){
-        if(token == null){
+        if(err.status === 401 || localStorage == null){
             $location.path('/login');
             throw err;
         } else {

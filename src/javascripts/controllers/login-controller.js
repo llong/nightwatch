@@ -1,25 +1,32 @@
-app.controller('loginController', [
-  '$scope','$http','$localStorage','$location','authenticate',
-  function($scope,$http,$localStorage,$location,authenticate){
-    var API = authenticate;
+// app.controller('loginController', [
+//   '$scope','$http','$localStorage','$location','authenticate',
+//   function($scope,$http,$localStorage,$location,authenticate){
+//
 
-    $scope.login = function(){
-      $http.post( API + 'api/login',{
-        username: $scope.username,
-        password: $scope.password
-      })
-      .then(function(response){
-        $scope.userData = response.data;
-        $localStorage.token = response.data;
+app.controller('loginController', function($scope,$auth,$location,API){
+  var vm = this;
+  $scope.loggingIn = false;
 
-        console.log(response);
-      })
-      .catch(function(err){
-        throw err;
-        $scope.message = true;
-      })
-      .finally(function(){
-        $location.path('/');
-      });
+  vm.login = function() {
+    $scope.loggingIn = true;
+    var credentials = {
+      username: vm.username,
+      password: vm.password
     }
-}]);
+
+    // Use Satellizer's $auth service to login
+    $auth.login(credentials)
+    .then(function(data){
+      $scope.loggingIn = true;
+      $location.path('/');
+    })
+    .catch(function(err){
+      if(err.status == 401){
+        $scope.invalidPassword = true;
+      }
+    })
+    .finally(function(){
+      $scope.loggingIn = false;
+    })
+  }
+});

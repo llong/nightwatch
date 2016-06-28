@@ -1,21 +1,24 @@
 .container
   .card.diffused-shadow
-    form.row(ng-submit="addDevice()" name="deviceForm" novalidate)
+    form.row(ng-submit="device.addDevice()" name="deviceForm" novalidate)
     
       .col.col-6-of-12.col-centered.text-center.m-b-3
         img.img-responsive(src="/assets/images/nw_vertical_logo_tagline.png", alt="NIGHTWATCH logo" style="max-width:350px;")
         h4 Great! Now let's add your device(s)
         h5 You can add multiple devices to your account and assign them to any of your horses at any time.
+        
+        .alert.success.m-t-1(ng-show="device.successMessage == true")
+          span Device successfully added to your account
       
       .col.col-4-of-12.col-push-2-of-12
         label.required device serial
         p
-          input.stretch(type="text" ng-model="serialNumber" required ng-minlength="12" maxlength="12" ng-maxlength="12" ng-pattern="regex")
+          input.stretch(type="text" ng-model="device.serialNumber" required ng-minlength="12" maxlength="12" ng-maxlength="12" ng-pattern="regex")
           
       .col.col-4-of-12
         label device nickname
         p
-          input.stretch(type="text" ng-model="nickName")
+          input.stretch(type="text" ng-model="device.nickName")
       
       div.m-t-3
         .col.col-4-of-12.col-push-2-of-12
