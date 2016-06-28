@@ -17,20 +17,20 @@ var ngAnnotate = require('gulp-ng-annotate');
 
 // Compile Sass into CSS and minify it
 gulp.task('sass', function(){
-  return gulp.src('./src/scss/**/*.scss')
+  return gulp.src('src/scss/**/*.scss')
   .pipe(sass())
   .pipe(autoprefixer({}))
   .pipe(concat('main.css'))
   .pipe(cssnano())
-  .pipe(gulp.dest('./assets/css'))
+  .pipe(gulp.dest('assets/css'))
   .pipe(reload({stream: true}));
 });
 
 // Compile Jade templates into HTML
 gulp.task('templates', function(){
-  return gulp.src('./src/jade/**/*.jade')
+  return gulp.src('src/jade/**/*.jade')
   .pipe(jade())
-  .pipe(gulp.dest('./assets/partials'));
+  .pipe(gulp.dest('assets/partials'));
 });
 
 // Watch compiled jade templates
@@ -39,16 +39,16 @@ gulp.task('jade-watch', ['templates'], reload);
 //Compile JavaScripts and minify
 gulp.task('scripts', function(){
   return gulp.src([
-    './src/javascripts/ng-storage.js',
-    './src/javascripts/satellizer.js',
-    './src/javascripts/app.js',
-    './src/javascripts/services/*.js',
-    './src/javascripts/controllers/*.js'
+    'src/javascripts/ng-storage.js',
+    'src/javascripts/satellizer.js',
+    'src/javascripts/app.js',
+    'src/javascripts/services/*.js',
+    'src/javascripts/controllers/*.js'
   ])
   .pipe(concat('app.js'))
   .pipe(ngAnnotate())
   .pipe(uglify().on('error',gutil.log))
-  .pipe(gulp.dest('./assets/javascripts'))
+  .pipe(gulp.dest('assets/javascripts'))
   .pipe(reload({stream: true}));
 });
 
@@ -60,8 +60,8 @@ gulp.task('default',['sass','templates'], function(){
     middleware: [compression()]
   });
 
-  gulp.watch('./src/scss/**/*.scss',['sass']);
-  gulp.watch('./src/javascripts/**/*.js',['scripts']);
-  gulp.watch('./src/jade/**/*.jade',['jade-watch']);
+  gulp.watch('src/scss/**/*.scss',['sass']);
+  gulp.watch('src/javascripts/**/*.js',['scripts']);
+  gulp.watch('src/jade/**/*.jade',['jade-watch']);
   gulp.watch('./*.html').on('change', reload);
 });
