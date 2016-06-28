@@ -9,65 +9,65 @@ app.config(['$routeProvider','$locationProvider','$authProvider',function($route
   $authProvider.tokenName = 'access_token';
   $routeProvider
     .when('/', {
-      templateUrl: '/assets/partials/dashboard.html',
+      templateUrl: 'assets/partials/dashboard.html',
       controller: 'dashboardController',
       activetab: 'dashboard'
     })
     .when('/login', {
-      templateUrl: '/assets/partials/login.html',
+      templateUrl: 'assets/partials/login.html',
       controller: 'loginController as login'
     })
     .when('/register', {
-      templateUrl: '/assets/partials/register.html',
+      templateUrl: 'assets/partials/register.html',
       controller: 'registerController'
     })
     .when('/create-name-password', {
-      templateUrl: '/assets/partials/create-name-password.html'
+      templateUrl: 'assets/partials/create-name-password.html'
     })
     .when('/add-phone', {
-      templateUrl: '/assets/partials/add-phone.html',
+      templateUrl: 'assets/partials/add-phone.html',
       controller: 'phoneController as phone'
     })
     .when('/primary-address', {
-      templateUrl: '/assets/partials/primary-address.html'
+      templateUrl: 'assets/partials/primary-address.html'
     })
     .when('/billing-address', {
-      templateUrl: '/assets/partials/billing-address.html'
+      templateUrl: 'assets/partials/billing-address.html'
     })
     .when('/create-subaccount', {
-      templateUrl: '/assets/partials/create-subaccount.html'
+      templateUrl: 'assets/partials/create-subaccount.html'
     })
     .when('/create-group', {
-      templateUrl: '/assets/partials/create-group.html'
+      templateUrl: 'assets/partials/create-group.html'
     })
     .when('/add-device', {
-      templateUrl: '/assets/partials/add-device.html',
+      templateUrl: 'assets/partials/add-device.html',
       controller: 'deviceController as device'
     })
     .when('/add-horse', {
-      templateUrl: '/assets/partials/add-horse.html',
+      templateUrl: 'assets/partials/add-horse.html',
       controller: 'horseController'
     })
     .when('/notification-settings', {
-      templateUrl: '/assets/partials/notification-settings.html'
+      templateUrl: 'assets/partials/notification-settings.html'
     })
     // Admin Views
     .when('/user', {
-      templateUrl: '/assets/partials/user.html',
+      templateUrl: 'assets/partials/user.html',
       controller: 'userController as user'
     })
     .when('/devices', {
-      templateUrl: '/assets/partials/devices.html',
+      templateUrl: 'assets/partials/devices.html',
       controller: 'deviceController as device',
       activetab: 'devices'
     })
     .when('/horses', {
-      templateUrl: '/assets/partials/horses.html',
+      templateUrl: 'assets/partials/horses.html',
       controller: 'horseController as horse',
       activetab: 'horses'
     })
     .when('/horses/:id', {
-      templateUrl: '/assets/partials/horse.html',
+      templateUrl: 'assets/partials/horse.html',
       controller: 'horseController as horse',
       activetab: 'horses'
     })
