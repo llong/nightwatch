@@ -5,12 +5,17 @@ app.controller('horseController', [
     var vm = this;
     vm.loading = true;
     $scope.$route = $route;
+
+    $scope.viewHorse = function(horse){
+      //$location.path('/horses/' + '2');
+      console.log(horse.$index + 'yo');
+    }
     // *************** GET **********************
     vm.getHorses = function(){
       $http.get(API + 'api/horse')
       .then(function(res){
         vm.horses = res.data;
-        vm.whichHorse = $routeParams.id;
+        vm.whichHorse = vm.horses[$routeParams.id];
       })
       .catch(function(err){
         if(err.status === 401){

@@ -6,36 +6,41 @@ ng-include(src="'assets/partials/navbar.html'")
         .col.col-4-of-12.col-push-2-of-12
           label.required registered name
           p
-            input.stretch(type="text" ng-model="horse.horses[horse.whichHorse].registered_name" required)
+            input.stretch(type="text" ng-model="horse.whichHorse.registered_name" required)
         
         .col.col-4-of-12
           label nickname (optional)
           p
-            input.stretch(type="text" ng-model="nickName")
+            input.stretch(type="text" ng-model="horse.whichHorse.nick_name")
     
       .row
         
         .col.col-3-of-12.col-push-2-of-12
           label.required breed
           p
-            select.stretch(ng-model="breed" required)
+            select.stretch(ng-model="horse.whichHorse.breed" required)
               option Choose breed
+              option(value="Arabian") Arabian
+              option(value="Thoroughbred") Thoroughbred
+              option(value="Trakehner") Trakehner
+              option(value="Morgan") Morgan
+              option(value="Hanoverian") Hanoverian
               option(value="Horse") Horse
               option(value="Pony") Pony
         
         .col.col-3-of-12
           label.required sex
           p
-            select.stretch(ng-model="sex")
+            select.stretch(ng-model="horse.whichHorse.sex")
               option Choose Sex
-              option(value="Mare/Filly") Mare/Filly
-              option(value="Stallion/Colt") Stallion/Colt
+              option(value="mare") Mare
+              option(value="stallion") Stallion
               option(value="Gelding") Gelding
         
         .col.col-2-of-12
           label date of birth
           p
-            input.stretch(type="text")
+            input.stretch(type="text" ng-model="horse.whichHorse.birth_date")
       
       .row.m-t-2
         .col.col-4-of-12.col-centered

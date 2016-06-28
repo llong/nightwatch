@@ -3,7 +3,10 @@ var app = angular.module('app', ['ngRoute','ngStorage','satellizer']);
 
 app.value('API','https://portaldev.nightwatch24.com:44433/');
 
-app.config(['$routeProvider','$locationProvider','$authProvider',function($routeProvider,$locationProvider,$authProvider){
+app.config(['$routeProvider','$locationProvider','$authProvider','$httpProvider',
+function($routeProvider,$locationProvider,$authProvider,$httpProvider){
+
+  $httpProvider.defaults.headers.post['Content-Type'] =  'application/x-www-form-urlencoded';
 
   $authProvider.loginUrl = 'https://portaldev.nightwatch24.com:44433/api/login';
   $authProvider.tokenName = 'access_token';
@@ -76,7 +79,7 @@ app.config(['$routeProvider','$locationProvider','$authProvider',function($route
     //$locationProvider.html5Mode(true);
 }]);
 
-  app.run(['$http',function($http){
+  app.run(['$http',function($http,$httpProvider){
         $http.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-        $http.defaults.headers.common['Accept'] = 'application/json;odata=verbose';
+        $http.defaults.headers.common['Accept'] = 'application/json;charset=utf-8';
     }])

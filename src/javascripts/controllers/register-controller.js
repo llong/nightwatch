@@ -4,8 +4,7 @@ function($scope,$http,API){
   var API = API;
 
   // Register New User
-  $scope.register = function(res,err){
-    if ($scope.password === $scope.password2) {
+  $scope.register = function(){
       $http.post(API + 'account/register', {
         username: $scope.username,
         email: $scope.email,
@@ -18,7 +17,6 @@ function($scope,$http,API){
         console.log(res);
       })
     }
-  }
 
 
 }]);
