@@ -11,11 +11,11 @@ nav.navbar
     .toggle-btn.nw-menu(ng-click="toggleMenu()")
     ul.nav-menu(ng-model="toggleMenu" ng-class="{'expanded': expanded}")
       li
-        a(href="/#/" ng-class="{active: $route.current.activetab == 'dashboard'}") dashboard
+        a(href="#/" ng-class="{active: $route.current.activetab == 'dashboard'}") dashboard
       li
-        a(href="/#/devices" ng-class="{active: $route.current.activetab == 'devices'}") my devices
+        a(href="#/devices" ng-class="{active: $route.current.activetab == 'devices'}") my devices
       li
-        a(href="/#/horses" ng-class="{active: $route.current.activetab == 'horses'}") my horses
+        a(href="#/horses" ng-class="{active: $route.current.activetab == 'horses'}") my horses
     .divider
     span.user-toggle(ng-click="userMenu()")
       span(ng-bind="user.profile.first_name")
@@ -25,6 +25,6 @@ nav.navbar
     .user-menu
       ul.nav-menu(ng-model="userMenu" ng-class="{'expanded' : userExpanded}")
         li
-          a(href="/#/user" ng-click="userMenu()") My Account
+          a(href="user" ng-click="userMenu()") My Account
         li
           a(href="javascript:void(0)" ng-click="$parent.signOut();userMenu()") Sign Out
