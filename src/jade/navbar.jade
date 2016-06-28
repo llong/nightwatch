@@ -16,6 +16,7 @@ nav.navbar
         a(href="#/devices" ng-class="{active: $route.current.activetab == 'devices'}") my devices
       li
         a(href="#/horses" ng-class="{active: $route.current.activetab == 'horses'}") my horses
+
     .divider
     span.user-toggle(ng-click="userMenu()")
       span(ng-bind="user.profile.first_name")
