@@ -26,6 +26,6 @@ nav.navbar
     .user-menu
       ul.nav-menu(ng-model="userMenu" ng-class="{'expanded' : userExpanded}")
         li
-          a(href="user" ng-click="userMenu()") My Account
+          a(href="#/user" ng-click="userMenu()") My Account
         li
           a(href="javascript:void(0)" ng-click="$parent.signOut();userMenu()") Sign Out
