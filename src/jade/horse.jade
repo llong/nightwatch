@@ -1,226 +1,229 @@
-ng-include(src="'assets/partials/navbar.html'")
+ng-include(src="'assets/partials/navbar.html'" ng-init="back = true")
 
 .container
   .card
-    form.row
-        .col.col-4-of-12.col-push-2-of-12
-          label.required registered name
-          p
-            input.stretch(type="text" ng-model="horse.whichHorse.registered_name" required)
-        
-        .col.col-4-of-12
-          label nickname (optional)
-          p
-            input.stretch(type="text" ng-model="horse.whichHorse.nick_name")
-    
-      .row
-        
-        .col.col-3-of-12.col-push-2-of-12
-          label.required breed
-          p
-            select.stretch(ng-model="horse.whichHorse.breed" required)
-              option Choose breed
-              option(value="Arabian") Arabian
-              option(value="Thoroughbred") Thoroughbred
-              option(value="Trakehner") Trakehner
-              option(value="Morgan") Morgan
-              option(value="Hanoverian") Hanoverian
-              option(value="Horse") Horse
-              option(value="Pony") Pony
-        
-        .col.col-3-of-12
-          label.required sex
-          p
-            select.stretch(ng-model="horse.whichHorse.sex")
-              option Choose Sex
-              option(value="mare") Mare
-              option(value="stallion") Stallion
-              option(value="Gelding") Gelding
-        
-        .col.col-2-of-12
-          label date of birth
-          p
-            input.stretch(type="text" ng-model="horse.whichHorse.birth_date")
-      
-      .row.m-t-2
-        .col.col-4-of-12.col-centered
-          label location
-          p
-            input(type="radio" name="location" value="myAddress")
-            span.m-l-1.m-r-3 My Address
-            input(type="radio" name="location" value="other")
-            span.m-l-1 Other
+    .spinner(ng-show="horse.loadingHorse == true")
+      span &nbsp; Loading Horse Profile
+    div(ng-show="horse.loadingHorse == false")
+      form.row
+          .col.col-4-of-12.col-push-2-of-12
+            label.required registered name
+            p
+              input.stretch(type="text" ng-model="horse.whichHorse.registered_name" required)
           
-      .row.m-t-1
-        .col.col-4-of-12.col-push-1-of-12
-          label.required address
-          p
-            input.stretch(type="text")
-            
-        .col.col-3-of-12
-          label address 2
-          p
-            input.stretch(type="text")
+          .col.col-4-of-12
+            label nickname (optional)
+            p
+              input.stretch(type="text" ng-model="horse.whichHorse.nick_name")
+      
+        .row
+          
+          .col.col-3-of-12.col-push-2-of-12
+            label.required breed
+            p
+              select.stretch(ng-model="horse.whichHorse.breed" required)
+                option Choose breed
+                option(value="Arabian") Arabian
+                option(value="Thoroughbred") Thoroughbred
+                option(value="Trakehner") Trakehner
+                option(value="Morgan") Morgan
+                option(value="Hanoverian") Hanoverian
+                option(value="Horse") Horse
+                option(value="Pony") Pony
+          
+          .col.col-3-of-12
+            label.required sex
+            p
+              select.stretch(ng-model="horse.whichHorse.sex")
+                option Choose Sex
+                option(value="mare") Mare
+                option(value="stallion") Stallion
+                option(value="Gelding") Gelding
+          
+          .col.col-2-of-12
+            label date of birth
+            p
+              input.stretch(type="text" ng-model="horse.whichHorse.birth_date")
         
-        .col.col-3-of-12
-          label.required city
-          p
-            input.stretch(type="text")
+        .row.m-t-1
+          .col.col-5-of-12.col-centered
+            label location
+            p
+              input(type="radio" name="location" value="myAddress")
+              span.m-l-1.m-r-3 My Address
+              input(type="radio" name="location" value="other")
+              span.m-l-1 Other
+            
+        .row.m-t-1
+          .col.col-4-of-12.col-push-1-of-12
+            label.required address
+            p
+              input.stretch(type="text")
+              
+          .col.col-3-of-12
+            label address 2
+            p
+              input.stretch(type="text")
+          
+          .col.col-3-of-12
+            label.required city
+            p
+              input.stretch(type="text")
+                  
+          .col.col-3-of-12.col-push-2-of-12
+            label.required state/province
+            p
+              select.stretch
+                option Select State   
+          
+          .col.col-3-of-12
+            label.required country
+            p
+              select.stretch
+                option Select country   
+          
+          
+          .col.col-2-of-12
+            label.required postal code
+            p
+              input.stretch(type="text")
+              
+      
+        .banner
+          span HEALTH
+        .banner-content
+          .col.col-12-of-12
+            label.required has your horse ever had prior abdominal surgery?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+          
+          .col.col-12-of-12
+            label.required within the past 12 months?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+          
+          .col.col-12-of-12
+            label.required is your horse on a routine(1-2x/year) dental program?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+            
+          .col.col-12-of-12
+            label.required is your horse on a routine(1-2x/year) vaccination/worming program?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+        
+
+        .banner
+          span HABITS
+        .banner-content.hide
+          .col.col-12-of-12
+            label Does your hosrse crib?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
                 
-        .col.col-3-of-12.col-push-2-of-12
-          label.required state/province
-          p
-            select.stretch
-              option Select State   
-        
-        .col.col-3-of-12
-          label.required country
-          p
-            select.stretch
-              option Select country   
-        
-        
-        .col.col-2-of-12
-          label.required postal code
-          p
-            input.stretch(type="text")
-            
-    
-      .banner
-        span HEALTH
-      .banner-content
-        .col.col-12-of-12
-          label.required has your horse ever had prior abdominal surgery?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-        
-        .col.col-12-of-12
-          label.required within the past 12 months?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-        
-        .col.col-12-of-12
-          label.required is your horse on a routine(1-2x/year) dental program?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
+          .col.col-12-of-12
+            label does your horse windsuck?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+                      
+          .col.col-12-of-12
+            label does your horse weave?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+                            
+          .col.col-12-of-12
+            label does your horse routinely show signs of colic?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+                
+          .col.col-12-of-12
+            label does your horse routinely get cast in their stall?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+                
+              
+
+        div.banner
+          span ROUTINE (optional)
+        .banner-content.hide
+          .col.col-12-of-12
+            label how is your horse stabled?
+            p
+              select(ng-model="stabled")
+                option(value="Turned Out") Turned out
+                option(value="Stalled &amp; Turned Out") Stalled &amp; Turned out
+                option(value="Stalled") Stalled
+                
+          .col.col-12-of-12
+            label how often is your horse turned out and allowed to graze?
+            p
+              select(ng-model="turnOut")
+                option(value="Always") Always
+                option(value="Most Days") Most Days
+                option(value="Seasonally") Seasonally
+                option(value="Never") Never
+                      
+          .col.col-12-of-12
+            label is your horse checked-on by anyone overnight?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+                            
+          .col.col-12-of-12
+            label is your horse used for competitions (races, shows, etc)?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+                
+          .col.col-12-of-12
+            label does your horse travel more than 6x/year to a competition?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
+                
+          .col.col-12-of-12
+            label does your horse travel more than 6x/year to a competition?
+            div
+              label.switch
+                input(type="checkbox")
+                .switch-btn
           
-        .col.col-12-of-12
-          label.required is your horse on a routine(1-2x/year) vaccination/worming program?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-      
-      // HABITS
-      .banner
-        span HABITS
-      .banner-content.hide
-        .col.col-12-of-12
-          label Does your hosrse crib?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-              
-        .col.col-12-of-12
-          label does your horse windsuck?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-                    
-        .col.col-12-of-12
-          label does your horse weave?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-                          
-        .col.col-12-of-12
-          label does your horse routinely show signs of colic?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-              
-        .col.col-12-of-12
-          label does your horse routinely get cast in their stall?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-              
-            
-      // ROUTINE
-      div.banner
-        span ROUTINE (optional)
-      .banner-content.hide
-        .col.col-12-of-12
-          label how is your horse stabled?
-          p
-            select(ng-model="stabled")
-              option(value="Turned Out") Turned out
-              option(value="Stalled &amp; Turned Out") Stalled &amp; Turned out
-              option(value="Stalled") Stalled
-              
-        .col.col-12-of-12
-          label how often is your horse turned out and allowed to graze?
-          p
-            select(ng-model="turnOut")
-              option(value="Always") Always
-              option(value="Most Days") Most Days
-              option(value="Seasonally") Seasonally
-              option(value="Never") Never
-                    
-        .col.col-12-of-12
-          label is your horse checked-on by anyone overnight?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-                          
-        .col.col-12-of-12
-          label is your horse used for competitions (races, shows, etc)?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-              
-        .col.col-12-of-12
-          label does your horse travel more than 6x/year to a competition?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
-              
-        .col.col-12-of-12
-          label does your horse travel more than 6x/year to a competition?
-          div
-            label.switch
-              input(type="checkbox")
-              .switch-btn
+          .col.col-12-of-12
+            label which of these best describes your type of horse
+            p
+              select(ng-model="turnOut")
+                option(value="Race") Race
+                option(value="Sport") Sport
+                option(value="Rodeo") Rodeo
+                option(value="Recreatioin") Recreation
         
-        .col.col-12-of-12
-          label which of these best describes your type of horse
-          p
-            select(ng-model="turnOut")
-              option(value="Race") Race
-              option(value="Sport") Sport
-              option(value="Rodeo") Rodeo
-              option(value="Recreatioin") Recreation
+        .row.m-t-3
+          .col.col-4-of-12.col-push-2-of-12
+            a.btn.secondary.stretch(ng-click="horse.removeHorse(horse.whichHorse.id)") Remove Horse
+          
+          .col.col-4-of-12
+            input.btn.primary.stretch(type="submit" ng-click="horse.updateHorse()" value="save changes")
       
-      .row.m-t-3
-        .col.col-4-of-12.col-push-2-of-12
-          a.btn.success-outline.stretch(href="#") skip for now
-        
-        .col.col-4-of-12
-          input.btn.success.stretch(type="submit" ng-click="addHorse()" value="Add Horse")
-    
 
 script(src="assets/javascripts/accordion.js")}}

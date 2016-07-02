@@ -32,9 +32,10 @@ ng-include(src="'assets/partials/navbar.html'")
           
   .card.m-t-1(ng-controller="phoneController as phones")
     h4.text-muted.text-uppercase phone numbers
-    .col.m-t-1(ng-hide="phones.loadingPhones === false")
-      .spinner 
-        span Loading Phones
+    .row  
+      .col.m-t-1(ng-hide="phones.loadingPhones === false")
+        .spinner 
+          span Loading Phones
     .row.m-t-1
       .col.col-4-of-12.m-b-1(ng-repeat="phone in phones.phones")
           div.number-circle.m-r-1 {{$index + 1}}
@@ -63,10 +64,11 @@ ng-include(src="'assets/partials/navbar.html'")
   
   .card.m-t-1
     h4.text-muted.text-uppercase email addresses
-    .row.m-t-1.m-b-1
+    .row.m-t-1.m-b-1(ng-hide="loadingEmails == false") 
       .col
-        .spinner(ng-hide="loadingEmails == false") 
+        .spinner 
           span Loading Emails
+    .row
       .col.col-4-of-12(ng-repeat="email in user.emails" ng-show="loadingEmails == false")
         p
           .m-r-1.number-circle(ng-bind="$index + 1")

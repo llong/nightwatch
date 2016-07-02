@@ -1,14 +1,16 @@
 app.controller('horseController', [
-  '$scope','$http','$localStorage','$location','API','$route','$routeParams',
-  function($scope,$http,$localStorage,$location,API,$route,$routeParams){
+  '$scope','$http','$localStorage','$location','API','$route','$routeParams','$rootScope',
+  function($scope,$http,$localStorage,$location,API,$route,$routeParams,$rootScope){
     var API = API;
     var vm = this;
-    vm.loading = true;
+    vm.loadingHorse = true;
+    vm.successMessage = false;
     $scope.$route = $route;
 
     $scope.viewHorse = function(horse){
-      //$location.path('/horses/' + '2');
-      console.log(horse.$index + 'yo');
+      $location.path('/horses/horse/' + horse);
+      console.log(horse);
+      vm.loadingHorse = true;
     }
     // *************** GET **********************
     vm.getHorses = function(){
@@ -24,18 +26,20 @@ app.controller('horseController', [
       })
       .finally(function(){
         vm.loading = false;
+        vm.loadingHorse = false;
+        console.log(vm.horses);
       })
     }
 
     vm.getHorses();
 
     // *************** POST **********************
-    $scope.addHorse = function(){
+    vm.addHorse = function(){
       $http.post(API + 'api/horse',{
-        registeredName: $scope.registeredName,
-        nickName: $scope.nickName,
-        sex: $scope.sex,
-        breed: $scope.breed
+        registeredName: vm.registeredName,
+        nickName: vm.nickName,
+        sex: vm.sex,
+        breed: vm.breed
       })
       .then(function(res){
         $scope.horses = res;
@@ -44,7 +48,40 @@ app.controller('horseController', [
       }, function(err){
         console.log(err);
       })
+      .finally(function(){
+        $location.path('/horses')
+      })
+    }
+
+    // *************** PUT **********************
+    vm.updateHorse = function(){
+      $http.put(API + 'api/horse/' + vm.horses[horse].id, {
+        registeredName: vm.whichHorse.registered_name,
+        nickName: vm.whichHorse.nick_name,
+        sex: vm.whichHorse.sex,
+        breed: vm.whichHorse.breed
+      })
+      .catch(function(err){
+        throw err;
+      })
+      .then(function(){
+        console.log('horse updated');
+        vm.successMessage = true;
+      })
+    }
+
+    // *************** DELETE **********************
+    vm.removeHorse = function(horse){
+      $http.delete(API + 'api/horse/' + horse)
+      .then(function(){
+        $location.path('/horses');
+      })
     }
 
 
+
+    $scope.backBtn = function(){
+      $location.path('/horses');
+      $scope.back = false;
+    }
   }]);

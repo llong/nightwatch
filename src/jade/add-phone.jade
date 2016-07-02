@@ -14,7 +14,7 @@
         label country
         p 
           select.stretch(ng-model="phone.code")
-            option(value="US") United States
+            //option(value="US") United States
             option(ng-repeat="country in phone.countries" value="{{country.code}}") {{country.name}} 
           
       .col.col-2-of-12

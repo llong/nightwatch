@@ -22,6 +22,10 @@ function($routeProvider,$locationProvider,$authProvider){
       templateUrl: 'assets/partials/register.html',
       controller: 'registerController'
     })
+    .when('/register/:verifyAccount', {
+      templateUrl: 'assets/partials/verifyAccount.html',
+      controller: 'verifyController'
+    })
     .when('/create-name-password', {
       templateUrl: 'assets/partials/create-name-password.html'
     })
@@ -67,8 +71,13 @@ function($routeProvider,$locationProvider,$authProvider){
       controller: 'horseController as horse',
       activetab: 'horses'
     })
-    .when('/horses/:id', {
+    .when('/horses/horse/:id', {
       templateUrl: 'assets/partials/horse.html',
+      controller: 'horseController as horse',
+      activetab: 'horses'
+    })
+    .when('/horses/new', {
+      templateUrl: 'assets/partials/newHorse.html',
       controller: 'horseController as horse',
       activetab: 'horses'
     })

@@ -3,27 +3,56 @@ ng-include(src="'assets/partials/navbar.html'")
 .container
   .row
     // Add Devices
-    .col.col-4-of-12
+    .col.col-12-of-12
       form.card(name="deviceForm" novalidate ng-submit="device.addDevice()")
         h4.text-uppercase.text-muted add device
         hr.m-b-1
-        p
-          label.required device serial
-          input.stretch(type="text" maxlength=12 ng-model='device.serialNumber' required ng-minlength="12" ng-maxlength="12" ng-pattern="regex")
-        p
-          label device nickname
-          input.stretch(type="text" ng-model='device.nickName' placeholder='Optional')
-        p
-          input.btn.primary.stretch(type="submit" ng-disabled="deviceForm.$invalid")
+        .row
+          .col.col-4-of-12
+            p
+              label.required device serial
+              input.stretch(type="text" maxlength=12 ng-model='device.serialNumber' required ng-minlength="12" ng-maxlength="12" ng-pattern="regex")
+          .col.col-4-of-12  
+            label device nickname
+            input.stretch(type="text" ng-model='device.nickName' placeholder='Optional')
+          .col.col-4-of-12
+            label &nbsp;  
+            input.btn.success.stretch(type="submit" ng-disabled="deviceForm.$invalid")
         
     // List my Devices
-    .col.col-8-of-12
-      .card
-        h3 My Devices
+  .spinner.m-t-1(ng-show="device.loadingDevice == true")
+    span &nbsp; Loading Devices
+  .alert.success.m-t-1(ng-show="device.message.status == true" ng-bind="device.message.text")
+  .alert.danger.m-t-1(ng-show="device.message.status == 'error'")
+    span(ng-bind="device.message.text")
+  
+  .row.m-t-1
+    .col.col-6-of-12(ng-repeat="dev in device.devices")
+      .card.m-b-1
+        a.text-success.nw-speaker_phone(href="") &nbsp;
+        span(ng-hide="updateDevice == true") {{dev.nick_name}}
+        input(type="text" ng-show="updateDevice == true" ng-model="device.whichDevice.nick_name" placeholder="Nickname")
+        
+        span.float-right
+          a.nw-pencil.text-muted(href="" ng-click="device.getDevice($index);updateDevice = true") &nbsp;
+          a.nw-cross.text-muted(href="" ng-click="device.removeDevice($index)")
         hr
-        .horse-row(ng-repeat="device in device.devices")
+        
+        div.banner  
+          span
+            strong Serial: &nbsp;
+            span(ng-hide="updateDevice == true" ng-bind="dev.serial_number")
+            input(ng-show="updateDevice == true" type="text" ng-model="device.whichDevice.serial_number")
+          
+        .m-t-1
+          label assigned to
           div
-            span(ng-bind="device.serial_number")
-          div
-            span(ng-bind="device.nick_name")
-    
+            select.stretch
+              option horses
+          .m-t-1
+            .row
+              .col.col-6-of-12
+                a.btn.secondary.stretch(href="" ng-show="updateDevice == true" ng-click="updateDevice = false") cancel  
+              .col.col-6-of-12
+                a.btn.primary.stretch(href="" ng-show="updateDevice == true" ng-click="device.updateDevice()") update device
+  
