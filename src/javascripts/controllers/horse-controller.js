@@ -1,5 +1,4 @@
-app.controller('horseController', [
-  '$scope','$http','$localStorage','$location','API','$route','$routeParams','$rootScope',
+app.controller('horseController',
   function($scope,$http,$localStorage,$location,API,$route,$routeParams,$rootScope){
     var API = API;
     var vm = this;
@@ -71,6 +70,9 @@ app.controller('horseController', [
     }
 
     // *************** DELETE **********************
+
+    // modal
+
     vm.removeHorse = function(horse){
       $http.delete(API + 'api/horse/' + horse)
       .then(function(){
@@ -84,4 +86,4 @@ app.controller('horseController', [
       $location.path('/horses');
       $scope.back = false;
     }
-  }]);
+  });

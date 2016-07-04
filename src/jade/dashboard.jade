@@ -14,7 +14,7 @@ ng-include(src="'assets/partials/navbar.html'")
           a(href="javascript:void(0)" ng-click="sortType = 'edi_score'; sortReverse = !sortReverse") EDI
       .spinner(ng-show="loading == true") 
         span Loading Horses
-      .horse-row(ng-repeat="horse in horses | orderBy:sortType:sortReverse" ng-click="getHorse(horse)" ng-show="horses.length >= 1")
+      .horse-row.fade(ng-repeat="horse in horses | orderBy:sortType:sortReverse" ng-click="getHorse(horse)" ng-show="horses.length >= 1")
         div(style="width:2.5rem")
           .avatar(style="background-image:url({{horse.thumbnail_url}})")
         div

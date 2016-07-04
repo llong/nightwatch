@@ -1,5 +1,7 @@
 // Define App
-var app = angular.module('app', ['ngRoute','ngStorage','satellizer']);
+var app = angular.module('app',
+['ngRoute','ngStorage','satellizer','ngAnimate','vesparny.fancyModal',
+]);
 
 app.value('API','https://portaldev.nightwatch24.com:44433/');
 

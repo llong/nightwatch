@@ -5,7 +5,7 @@ ng-include(src="'assets/partials/navbar.html'")
     .card
       .spinner(ng-show="horse.loadingHorse == true") &nbsp; Loading Horses
       
-      div.horse-row(ng-repeat="horse in horse.horses")
+      div.horse-row.fade(ng-repeat="horse in horse.horses")
         div(style="width:2.5rem")
           .avatar(style="background-image:url({{horse.thumbnail_url}})")
         div(style="vertical-align:middle" ng-click="viewHorse($index)")

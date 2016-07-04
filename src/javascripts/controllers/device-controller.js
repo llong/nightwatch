@@ -1,5 +1,5 @@
 app.controller('deviceController',
-  function($scope,$http,$localStorage,$location,API,$route){
+  function($scope,$http,$localStorage,$location,API,$route,$fancyModal,$rootScope){
     var API = API;
     $scope.regex = /^[a-zA-Z0-9]{12}?/;
     $scope.$route = $route;
@@ -9,7 +9,22 @@ app.controller('deviceController',
       status: false,
       text: ''
     }
-    console.log(vm.message.status);
+
+    // Used to select Device for Edit and Delete
+      vm.getDevice = function(device){
+        vm.whichDevice = vm.devices[device];
+        console.log(vm.whichDevice);
+      }
+
+    // Hides flash messages
+    var hideAlert = function(){
+      $scope.$apply(function(){
+        vm.message.status = !vm.message.status;
+        console.log(vm.message.status);
+      });
+    }
+
+
 
     // *************** GET Devices **********************
 
@@ -37,7 +52,7 @@ app.controller('deviceController',
     // *************** CREATE **********************
     vm.successMessage = false;
     vm.addDevice = function(){
-
+          vm.devices = [];
           $http.post(API + 'api/device',{
             serialNumber: vm.serialNumber,
             nickName: vm.nickName
@@ -45,12 +60,11 @@ app.controller('deviceController',
           .catch(function(err){
             //throw err;
             if (err.status == 400) {
-
               vm.message = {
                 status: 'error',
                 text: err.data.errors[0]
               }
-
+              vm.getDevices();
             }
           })
           .then(function(res){
@@ -61,22 +75,15 @@ app.controller('deviceController',
                 };
                 vm.serialNumber = '';
                 vm.nickName = '';
+                vm.getDevices();
             }
-            throw res;
-
           })
           .finally(function(res){
-            $http.get(API + 'api/device')
-            .then(function(res){
-              vm.devices = res.data;
-            })
+            setTimeout(hideAlert,6000);
           });
     }
     // *************** UPDATE **********************
-    vm.getDevice = function(device){
-      vm.whichDevice = vm.devices[device];
-      console.log(vm.whichDevice);
-    }
+
 
 
     vm.updateDevice = function(){
@@ -88,27 +95,39 @@ app.controller('deviceController',
       .catch(function(err){
         throw err;
       })
-      .then(function(){
+      .then(function(res){
         getDevices();
       })
     }
 
     // *************** DELETE **********************
+    vm.modal = function(device){
+      vm.getDevice(device);
+      $fancyModal.open({
+        scope: $scope,
+        templateUrl: 'assets/partials/deleteDevice.html'
+
+      });
+    };
+
+
     vm.removeDevice = function(device){
-      $http.delete(API + 'api/device/' + vm.devices[device].id)
+      $http.delete(API + 'api/device/' + vm.whichDevice.id)
       .catch(function(err){
         throw err;
       })
-      .then(function(){
+      .then(function(res){
+        $fancyModal.close();
+        vm.loadingDevice = true;
+        vm.devices = [];
         vm.getDevices();
         vm.message = {
           status: true,
           text: 'Device successfully removed'
-        }
-        //vm.message.status = false;
+        };
       })
       .finally(function(){
-
+        setTimeout(hideAlert,6000);
       })
     }
 

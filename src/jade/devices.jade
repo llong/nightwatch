@@ -22,12 +22,12 @@ ng-include(src="'assets/partials/navbar.html'")
     // List my Devices
   .spinner.m-t-1(ng-show="device.loadingDevice == true")
     span &nbsp; Loading Devices
-  .alert.success.m-t-1(ng-show="device.message.status == true" ng-bind="device.message.text")
-  .alert.danger.m-t-1(ng-show="device.message.status == 'error'")
+  .alert.success.m-t-1.fade(ng-show="device.message.status === true" ng-bind="device.message.text")
+  .alert.danger.m-t-1.fade(ng-show="device.message.status === 'error'")
     span(ng-bind="device.message.text")
   
   .row.m-t-1
-    .col.col-6-of-12(ng-repeat="dev in device.devices")
+    .col.col-6-of-12.fade(ng-repeat="dev in device.devices")
       .card.m-b-1
         a.text-success.nw-speaker_phone(href="") &nbsp;
         span(ng-hide="updateDevice == true") {{dev.nick_name}}
@@ -35,7 +35,7 @@ ng-include(src="'assets/partials/navbar.html'")
         
         span.float-right
           a.nw-pencil.text-muted(href="" ng-click="device.getDevice($index);updateDevice = true") &nbsp;
-          a.nw-cross.text-muted(href="" ng-click="device.removeDevice($index)")
+          a.nw-cross.text-muted(href="" ng-click="device.modal($index)")
         hr
         
         div.banner  
@@ -55,4 +55,3 @@ ng-include(src="'assets/partials/navbar.html'")
                 a.btn.secondary.stretch(href="" ng-show="updateDevice == true" ng-click="updateDevice = false") cancel  
               .col.col-6-of-12
                 a.btn.primary.stretch(href="" ng-show="updateDevice == true" ng-click="device.updateDevice()") update device
-  

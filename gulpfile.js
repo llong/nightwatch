@@ -41,6 +41,8 @@ gulp.task('scripts', function(){
   return gulp.src([
     'src/javascripts/ng-storage.js',
     'src/javascripts/satellizer.js',
+    'src/javascripts/ng-animate.js',
+    'src/javascripts/modal-service.js',
     'src/javascripts/app.js',
     'src/javascripts/services/*.js',
     'src/javascripts/directives/*.js',
@@ -48,7 +50,7 @@ gulp.task('scripts', function(){
   ])
   .pipe(concat('app.js'))
   .pipe(ngAnnotate())
-  .pipe(uglify().on('error',gutil.log))
+  .pipe(uglify({mangle: false}).on('error',gutil.log))
   .pipe(gulp.dest('assets/javascripts'))
   .pipe(reload({stream: true}));
 });

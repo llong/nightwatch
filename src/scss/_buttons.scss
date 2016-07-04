@@ -54,4 +54,13 @@ input[type=submit],button {
     background: $lightest-gray;
     color: $light-gray;
   }
+
+  &.danger {
+    background: $danger;
+    color: $white;
+
+    &:hover {
+      background: darken($danger,10%);
+    }
+  }
 }
