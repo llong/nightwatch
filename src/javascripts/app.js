@@ -36,10 +36,12 @@ function($routeProvider,$locationProvider,$authProvider){
       controller: 'phoneController as phone'
     })
     .when('/primary-address', {
-      templateUrl: 'assets/partials/primary-address.html'
+      templateUrl: 'assets/partials/primary-address.html',
+      controller: 'addressController as address'
     })
     .when('/billing-address', {
-      templateUrl: 'assets/partials/billing-address.html'
+      templateUrl: 'assets/partials/billing-address.html',
+      controller: 'addressController as address'
     })
     .when('/create-subaccount', {
       templateUrl: 'assets/partials/create-subaccount.html'

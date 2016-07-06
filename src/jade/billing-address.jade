@@ -1,58 +1,68 @@
 .container
-  .card.diffused-shadow
+  form.card.diffused-shadow(name="billingAddressForm")
     .row
       .col.col-8-of-12.col-centered.text-center.m-b-2
         img(src="assets/images/nw_vertical_logo_tagline.png", alt="NIGHTWATCH logo" style="max-width:350px;")
         h4 What is your billing address?
+        
+        .alert.m-t-1.fade(ng-class="message.color" ng-show="message.status === 'success' || message.status === 'failure' ") {{message.text}}
       
       .col.col-6-of-12.col-centered.text-center.m-b-2
-        input(type="checkbox" ng-model="sameAddress" ng-checked="true") 
+        input(type="checkbox" ng-model="sameAddress" ng-checked="true" ng-init="sameAddress = true") 
         span.m-l-1 Same as primary address
     
+    div(ng-if="sameAddress === true")
+      input(type="hidden" ng-model="shippingAddress.address1")
+      input(type="hidden" ng-model="shippingAddress.address2")
+      input(type="hidden" ng-model="shippingAddress.city")
+      input(type="hidden" ng-model="shippingAddress.state")
+      input(type="hidden" ng-model="shippingAddress.postalCode")
+      input(type="hidden" ng-model="shippingAddress.countryCode")
     .row(ng-if="sameAddress === false")    
-      .col.col-4-of-12.col-push-1-of-12
+      .col.col-4-of-12.col-push-2-of-12
         label.required Address
         p 
-          input.stretch(type="text")
-      .col.col-3-of-12
+          input.stretch(type="text" ng-model="address.address.address1" required)
+      .col.col-4-of-12
         label Address 2
         p 
-          input.stretch(type="text" placeholder="Optional") 
-      .col.col-3-of-12
+          input.stretch(type="text" placeholder="Optional" ng-model="address.address.address2") 
+      .col.col-3-of-12.col-push-2-of-12
         label.required city
         p 
-          input.stretch(type="text")
-      .col.col-3-of-12.col-push-2-of-12
-        label.required state/province
-        p 
-          select.stretch
-            option Select One
+          input.stretch(type="text" ng-model="address.address.city" required)
       .col.col-3-of-12
-        label.required Country
+        label.required state/province
         p 
           select.stretch
             option Select One
       .col.col-2-of-12
         label.required postal code
         p 
-          input.stretch(type="text") 
-          
-    .div
-      .col.col-12-of-12.banner.m-b-1
-        span CREDIT CARD INFORMATION (optional)
-      .col.col-4-of-12
-        label credit card number
+          input.stretch(type="text" ng-model="address.address.postalCode" required maxlength="5" ng-minlength="5") 
+      .col.col-4-of-12.col-centered
+        label.required Country
         p 
-          input.stretch(type="text") 
-      .col.col-4-of-12
-        label csc (check back of card)
-        p 
-          input.stretch(type="text") 
-      .col.col-4-of-12
-        label expiration date
-        p 
-          input.stretch(type="text") 
+          select.stretch(ng-model="address.address.countryCode")
+            option(ng-repeat="country in address.countries" value="{{country.code}}") {{country.name}}
+
+    // Credit Card Section - Add back once FoxyCart is configured          
+    //- .div
+    //-   .col.col-12-of-12.banner.m-b-1
+    //-     span CREDIT CARD INFORMATION (optional)
+    //-   .col.col-4-of-12
+    //-     label credit card number
+    //-     p 
+    //-       input.stretch(type="text") 
+    //-   .col.col-4-of-12
+    //-     label csc (check back of card)
+    //-     p 
+    //-       input.stretch(type="text") 
+    //-   .col.col-4-of-12
+    //-     label expiration date
+    //-     p 
+    //-       input.stretch(type="text") 
     .row   
       .col.col-4-of-12.col-centered.m-t-2
         p
-          button.btn.success.stretch Save
+          button.btn.success.stretch(ng-click="updateBillingAddress()" ng-disabled="billingAddressForm.$invalid") Save

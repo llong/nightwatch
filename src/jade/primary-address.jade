@@ -1,36 +1,40 @@
 .container
-  .card.diffused-shadow
+  form.card.diffused-shadow(name="primaryAddressForm" novalidate)
     .row
       .col.col-8-of-12.col-centered.text-center.m-b-3
         img(src="assets/images/nw_vertical_logo_tagline.png", alt="NIGHTWATCH logo" style="max-width:350px;")
         h4 What is your primary address?
         
-      .col.col-4-of-12.col-push-1-of-12
+        .alert.m-t-1.fade(ng-show="message.status === 'success' || message.status === 'failure'" ng-class="message.color") {{message.text}}
+        
+      .col.col-4-of-12.col-centered
         label.required Address
         p 
-          input.stretch(type="text")
-      .col.col-3-of-12
+          input.stretch(type="text" ng-model="address.address.address1" required)
+      .col.col-4-of-12.col-centered
         label Address 2
         p 
-          input.stretch(type="text" placeholder="Optional") 
-      .col.col-3-of-12
+          input.stretch(type="text" placeholder="Optional" ng-model="address.address.address2") 
+    .row
+      .col.col-4-of-12.col-centered
         label.required city
         p 
-          input.stretch(type="text")
-      .col.col-3-of-12.col-push-2-of-12
+          input.stretch(type="text" ng-model="address.address.city" required)
+      .col.col-4-of-12.col-centered
         label.required state/province
         p 
           select.stretch
             option Select One
-      .col.col-3-of-12
-        label.required Country
-        p 
-          select.stretch
-            option Select One
-      .col.col-2-of-12
+      .col.col-4-of-12.col-centered
         label.required postal code
         p 
-          input.stretch(type="text")    
+          input.stretch(type="text" ng-model="address.address.postalCode" maxlength="5" ng-minlength="5" required) 
+      .col.col-4-of-12.col-centered
+        label.required Country
+        p 
+          select.stretch(ng-model="address.address.countryCode")
+            option(ng-repeat="country in address.countries" value="{{country.code}}") {{country.name}}
+         
       .col.col-4-of-12.col-centered.m-t-2
         p
-          button.btn.success.stretch Save
+          button.btn.success.stretch(ng-click="updateShippingAddress()" ng-disabled="primaryAddressForm.$invalid") Save

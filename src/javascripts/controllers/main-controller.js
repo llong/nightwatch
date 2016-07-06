@@ -2,8 +2,6 @@ app.controller('mainController',
 ['$scope','$http','$localStorage','$location','authenticate','API',
 function($scope,$http,$localStorage,$location,authenticate,API){
 
-  //var API = authenticate;
-  console.log(API);
 
   $scope.getData = function(){
     $http.get(API + 'api/account',{

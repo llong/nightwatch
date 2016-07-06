@@ -2,7 +2,7 @@ ng-include(src="'assets/partials/navbar.html'")
 
 .container
   .card
-    .horse-row
+    div
       // Add user avatar once file upload is working
       //div(style="width:144px;")
         //img.circle(src="http://fillmurray.com/128/128", alt="avatar")
@@ -90,34 +90,34 @@ ng-include(src="'assets/partials/navbar.html'")
       .col.col-3-of-12
         label.required address
         p
-          input.stretch(type="text")
+          input.stretch(type="text" ng-model="user.profile.shipping_address.address1")
       
       .col.col-3-of-12
         label address 2
         p
-          input.stretch(type="text")
+          input.stretch(type="text" ng-model="user.profile.shipping_address.address2")
     .row
       .col.col-3-of-12
         label city
         p
-          input.stretch(type="text")
+          input.stretch(type="text" ng-model="user.profile.shipping_address.city")
       
       .col.col-3-of-12
         label state
         p
-          select.stretch(name="")
-            option(value="state")
+          select.stretch(name=""  ng-model="user.profile.shipping_address.state")
+            option(ng-repeat="state in user.profile.shipping_address" value="state.state") {{state.state}}
       
       .col.col-2-of-12
         label postal code
         p
-          input.stretch(type="text")
+          input.stretch(type="text" ng-model="user.profile.shipping_address.postalCode")
     .row    
       .col.col-3-of-12
         label country
         p
-          select.stretch(name="")
-            option(value="US" selected="selected") United States
+          select.stretch(name="" ng-model="user.profile.shipping_address.countryCode")
+            //option(value="US" selected="selected") United States
             option(ng-repeat="country in user.countries" value="{{country.code}}") {{country.name}}
             
 
@@ -127,17 +127,17 @@ ng-include(src="'assets/partials/navbar.html'")
       .col.col-3-of-12
         label.required address
         p
-          input.stretch(type="text")
+          input.stretch(type="text" ng-model="user.profile.billing_address.address1")
       
       .col.col-3-of-12
         label address 2
         p
-          input.stretch(type="text")
+          input.stretch(type="text" ng-model="user.profile.billing_address.address2")
     .row
       .col.col-3-of-12
         label city
         p
-          input.stretch(type="text")
+          input.stretch(type="text" ng-model="user.profile.billing_address.city")
       
       .col.col-3-of-12
         label state
@@ -148,12 +148,12 @@ ng-include(src="'assets/partials/navbar.html'")
       .col.col-2-of-12
         label postal code
         p
-          input.stretch(type="text")
+          input.stretch(type="text" ng-model="user.profile.billing_address.postalCode")
     .row    
       .col.col-3-of-12
         label country
         p
-          select.stretch(name="")
-            option(value="state")          
+          select.stretch(name="" ng-model="user.profile.billing_address.countryCode")
+            option(ng-repeat="country in user.countries" value="{{country.code}}") {{country.name}}
             
   

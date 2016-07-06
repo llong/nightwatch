@@ -17,77 +17,34 @@ ng-include(src="'assets/partials/navbar.html'" ng-init="back = true")
               input.stretch(type="text" ng-model="horse.whichHorse.nick_name")
       
         .row
-          
-          .col.col-3-of-12.col-push-2-of-12
-            label.required breed
+          .col.col-8-of-12.col-push-2-of-12  
             p
-              select.stretch(ng-model="horse.whichHorse.breed" required)
-                option Choose breed
-                option(value="Arabian") Arabian
-                option(value="Thoroughbred") Thoroughbred
-                option(value="Trakehner") Trakehner
-                option(value="Morgan") Morgan
-                option(value="Hanoverian") Hanoverian
-                option(value="Horse") Horse
-                option(value="Pony") Pony
-          
-          .col.col-3-of-12
-            label.required sex
-            p
-              select.stretch(ng-model="horse.whichHorse.sex")
-                option Choose Sex
-                option(value="mare") Mare
-                option(value="stallion") Stallion
-                option(value="Gelding") Gelding
-          
-          .col.col-2-of-12
-            label date of birth
-            p
-              input.stretch(type="text" ng-model="horse.whichHorse.birth_date")
-        
-        .row.m-t-1
-          .col.col-5-of-12.col-centered
-            label location
-            p
-              input(type="radio" name="location" value="myAddress")
-              span.m-l-1.m-r-3 My Address
-              input(type="radio" name="location" value="other")
-              span.m-l-1 Other
+              label.required breed
+              p
+                select.stretch(ng-model="horse.whichHorse.breed" required)
+                  option Choose breed
+                  option(value="Arabian") Arabian
+                  option(value="Thoroughbred") Thoroughbred
+                  option(value="Trakehner") Trakehner
+                  option(value="Morgan") Morgan
+                  option(value="Hanoverian") Hanoverian
+                  option(value="Horse") Horse
+                  option(value="Pony") Pony
             
-        .row.m-t-1
-          .col.col-4-of-12.col-push-1-of-12
-            label.required address
             p
-              input.stretch(type="text")
-              
-          .col.col-3-of-12
-            label address 2
+              label.required sex
+              p
+                select.stretch(ng-model="horse.whichHorse.sex")
+                  option Choose Sex
+                  option(value="mare") Mare
+                  option(value="stallion") Stallion
+                  option(value="Gelding") Gelding
+            
             p
-              input.stretch(type="text")
+              label date of birth
+              p
+                input.stretch(type="text" ng-model="horse.whichHorse.birth_date")
           
-          .col.col-3-of-12
-            label.required city
-            p
-              input.stretch(type="text")
-                  
-          .col.col-3-of-12.col-push-2-of-12
-            label.required state/province
-            p
-              select.stretch
-                option Select State   
-          
-          .col.col-3-of-12
-            label.required country
-            p
-              select.stretch
-                option Select country   
-          
-          
-          .col.col-2-of-12
-            label.required postal code
-            p
-              input.stretch(type="text")
-              
       
         .banner
           span HEALTH
