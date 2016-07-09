@@ -36,9 +36,9 @@ ng-include(src="'assets/partials/navbar.html'")
             div
               h3(ng-bind="activeHorse.registered_name")
             div.text-right
-            //  span #[small Last Updated]
-            //  br
-            //  span(ng-bind="metrics.edi_score" ng-class="ediColor(horse)")
+              span #[small Last Updated]
+              br
+              span(ng-bind="metrics.edi_score" ng-class="ediColor(horse)")
           .horse-row
             div.p-t-1
               span EDI&trade;
@@ -50,59 +50,56 @@ ng-include(src="'assets/partials/navbar.html'")
             .gauge-edi.text-right
               div(ng-bind="activeHorse.edi_score" ng-class="ediColor(activeHorse)")
           
-          div.m-t-3
-            span.nw-heart_rate
-            span &nbsp; Heart Rate
-            .horse-row
-              div
-                .progress-bar(value="47" max="100")
-                 .nw-triangle-up(style="left:{{metrics.bio[0].heart_rate}}%")
-              div.metric-display.text-center
-                h4(ng-bind="metrics.bio[0].heart_rate")
-                small (beats/min)
+          .metric-header biometrics
           
-          div.m-t-1
-            span.nw-respiratory_rate
-            span &nbsp; Respiratory Rate
-            .horse-row
-                div
-                  .progress-bar(value="47" max="100")
-                    .nw-triangle-up(style="left:{{metrics.bio[0].respiratory_rate}}%")
-                div.metric-display.text-center
-                  h4(ng-bind="metrics.bio[0].respiratory_rate")
-                  small (beats/min)
+          .metric-row.m-t-2
+            .icon.text-center
+              .nw-heart_rate.text-dark
+              .text-tiny beats/min
+            div
+              .progress-bar
+              .circle(ng-class="ediColor(activeHorse)" style="left:50%;")
+                div(ng-bind="metrics.bio[0].heart_rate")
+              .gray-bar(style="width:50%;left:50%;")
           
-          div.m-t-1
-            span.nw-rise_falls
-            span &nbsp; Rise Falls
-            .horse-row
-                div
-                  .progress-bar(value="47" max="100")
-                    .nw-triangle-up(style="left:{{metrics.behavior[0].fall_rise_count}}%")
-                div.metric-display.text-center
-                  h4(ng-bind="metrics.behavior[0].fall_rise_count")
-                  small (beats/min)
+          .metric-row.m-t-1
+            .icon.text-center
+              .nw-respiratory_rate.text-dark
+              .text-tiny breaths/min
+            div
+              .progress-bar
+              .circle(ng-class="ediColor(activeHorse)")
+                div(ng-bind="metrics.bio[0].respiratory_rate")
+              .gray-bar
           
-          div.m-t-1
-            span.nw-laying_down
-            span &nbsp; Laying Down
-            .horse-row
-                div
-                  .progress-bar(value="47" max="100")
-                    .nw-triangle-up(style="left:{{metrics.behavior[0].lying_time}}%")
-                div.metric-display.text-center
-                  h4(ng-bind="metrics.behavior[0].lying_time")
-                  small (beats/min)
+          .metric-header.m-t-1 behaviors
           
-          div.m-t-1
-            span.nw-rolls
-            span &nbsp; Rolls
-            .horse-row
-                div
-                  .progress-bar(value="47" max="100")
-                    .nw-triangle-up(style="left:{{metrics.behavior[0].roll_count}}%")
-                div.metric-display.text-center
-                  h4(ng-bind="metrics.behavior[0].roll_count")
-                  small (beats/min)
+          .metric-row.m-t-1
+            .icon.text-center
+              .nw-rise_falls.text-dark
+              .text-tiny times/min
+            div
+              .progress-bar
+              .circle(ng-class="ediColor(activeHorse)")
+                div(ng-bind="metrics.behavior[0].fall_rise_count")
+              .gray-bar
+              
+          .metric-row.m-t-1
+            .icon.text-center
+              .nw-laying_down.text-dark
+              .text-tiny times/day
+            div
+              .progress-bar
+              .circle(ng-class="ediColor(activeHorse)")
+                div(ng-bind="metrics.behavior[0].lying_time")
+              .gray-bar
           
-          
+          .metric-row.m-t-1
+            .icon.text-center
+              .nw-rolls.text-dark
+              .text-tiny times/day
+            div
+              .progress-bar
+              .circle(ng-class="ediColor(activeHorse)")
+                div(ng-bind="metrics.behavior[0].roll_count")
+              .gray-bar

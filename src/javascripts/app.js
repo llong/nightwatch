@@ -47,7 +47,8 @@ function($routeProvider,$locationProvider,$authProvider){
       templateUrl: 'assets/partials/create-subaccount.html'
     })
     .when('/create-group', {
-      templateUrl: 'assets/partials/create-group.html'
+      templateUrl: 'assets/partials/create-group.html',
+      controller: 'groupController as group'
     })
     .when('/add-device', {
       templateUrl: 'assets/partials/add-device.html',

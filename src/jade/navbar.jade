@@ -5,8 +5,8 @@ style.
   }
   
 script(src="assets/javascripts/hamburger-menu.js")
-
-nav.navbar
+div(style="margin-top:-3rem" ng-show="iOS === true")
+nav.navbar(ng-hide="iOS === true")
   div.inline-block
     a(href="javascript:void(0)" ng-click="backBtn()" ng-show="back == true")
       span.nw-keyboard_backspace 
@@ -25,7 +25,7 @@ nav.navbar
     span.user-toggle(ng-click="userMenu()")
       span(ng-bind="user.profile.first_name")
       span.m-r-1.nw-keyboard_arrow_down
-      img.circle(src="http://fillmurray.com/36/36", alt="avatar")
+      .avatar.nw-person()
       
     .user-menu
       ul.nav-menu(ng-model="userMenu" ng-class="{'expanded' : userExpanded}")

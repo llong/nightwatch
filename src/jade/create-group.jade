@@ -1,4 +1,4 @@
-.container(ng-controller="groupController")
+.container.m-t-1
   .card.diffused-shadow
     .row
       .col.col-8-of-12.col-centered.text-center.m-b-2
@@ -6,50 +6,64 @@
         h4 Would you like to separate your users into groups?
         h5 You can organize your users into groups. This is useful if you have users in multiple locations or separate groups of people who attend to specific horses. A default group will be added for you if you do not want to create any additional groups.
     
-    .row(ng-if="group" ng-model="group")
-      .col.col-4-of-12.col-push-1-of-12
-        label.required address
-        p
-          input.stretch(type="text" ng-model="$parent.address" name="address" id="address")
-      
-      .col.col-3-of-12
-        label address 2
-        p
-          input.stretch(type="text" placeholder="Optional" ng-model="$parent.address2")
+    form
+      div(ng-if="groupAddress === true")  
+        .row
+          .col.col-4-of-12.col-push-2-of-12
+            label.required address
+            p
+              input.stretch(type="text" ng-model="$parent.group.groupDetails.address.address1")
           
-      .col.col-3-of-12
-        label.required city
-        p
-          input.stretch(type="text" ng-model="$parent.city" placeholder="city")
-          
-      .col.col-3-of-12.col-push-3-of-12
-        label.required state/province
-        p
-          select.stretch
-            option Select One
-            option
-            
-      .col.col-3-of-12
-        label.required country
-        p
-          select.stretch
-            option Select One
-    
+          .col.col-4-of-12
+            label address 2
+            p
+              input.stretch(type="text" placeholder="Optional" ng-model="$parent.group.groupDetails.address.address2")
+        .row      
+          .col.col-3-of-12.col-push-2-of-12
+            label.required city
+            p
+              input.stretch(type="text" ng-model="$parent.group.groupDetails.address.city" placeholder="city")
+              
+          .col.col-4-of-12
+            label.required state/province
+            p
+              select.stretch
+                option Select One
+                option
+          .col.col-3-of-12
+              label.required postalcode
+              p
+                input.stretch(type="text" ng-model="$parent.group.groupDetails.address.postalCode")
+        .row        
+          .col.col-3-of-12.col-centered
+            label.required country
+            p
+              select.stretch(ng-model="$parent.group.groupDetails.address.countryCode")
+                option(ng-repeat="country in group.countries" value="{{country.code}}") {{country.name}}
+        
   
     .row.m-t-3
       .col.col-4-of-12.col-push-2-of-12
         label group name
         p
-          input.stretch(type="text" placeholder="Optional" ng-model="groupName") 
+          input.stretch(type="text" placeholder="Optional" ng-model="group.groupDetails.name") 
         p
-          a(href="javascript:void(0);" ng-click="assignGroup()") 
-            span(ng-model="assignGroupLink") Assign Address To Group
+          a(ng-init="groupAddress = false" href="javascript:void(0);" ng-click="assignGroup()") 
+            span(ng-model="assignGroupLink") {{AssignMessage}}
       .col.col-4-of-12
         label &nbsp;
         button.btn.primary.stretch(ng-click="addGroup()") add group
     
+    hr.m-b-1
+    
+    div
+      h4.text-center My Groups
+      .row
+        .col.col-8-of-12.col-centered
+          p(ng-repeat="group in groups")
+            span {{group.name}}
       
-      
+    hr.m-b-1  
     
     .row.m-t-3(ng-model="skipButton" ng-hide="skipButton == false")
       .col.col-4-of-12.col-push-2-of-12
@@ -60,6 +74,4 @@
         p
           button.btn.success.stretch next
     
-    div
-      p(ng-repeat="group in groups")
-        span {{group.groupName}}
+    

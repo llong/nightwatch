@@ -31,7 +31,7 @@ h5 {
 }
 
 ul li {
-  margin-bottom: 1rem;
+  //margin-bottom: 1rem;
   padding-left: 1.5rem;
 }
 
@@ -49,4 +49,16 @@ ul li {
 
 .text-danger {
   color: $danger;
+}
+
+.text-dark {
+  color: $dark;
+}
+
+.text-small {
+  font-size: .75rem;
+}
+
+.text-tiny {
+  font-size: .5rem;
 }

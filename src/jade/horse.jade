@@ -17,7 +17,11 @@ ng-include(src="'assets/partials/navbar.html'" ng-init="back = true")
               input.stretch(type="text" ng-model="horse.whichHorse.nick_name")
       
         .row
-          .col.col-8-of-12.col-push-2-of-12  
+          .col.col-8-of-12.col-push-2-of-12(ng-controller="groupController")
+            p
+              label
+                select.stretch
+                  option(ng-repeat="group in groups") {{group.name}}
             p
               label.required breed
               p

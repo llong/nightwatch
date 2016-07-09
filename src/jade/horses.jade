@@ -17,3 +17,17 @@ ng-include(src="'assets/partials/navbar.html'")
       .row.clearfix
         .col.col-5-of-12.m-t-1.float-right
           a.btn.success.stretch(href="#/horses/new") Add new horse
+
+    .card.m-t-1.m-b-1
+      div.text-right
+        a( href="" ng-click="horse.getDeactivatedHorses()") Show Deactivated Horses
+      hr
+      h4 Deactivated Horses
+      div.horse-row.fade(ng-repeat="horse in horse.deactivatedHorses")
+        div(style="width:2.5rem")
+          .avatar(style="background-image:url({{horse.thumbnail_url}})")
+        div(style="vertical-align:middle")
+          span(ng-bind="horse.registered_name") 
+          div(ng-bind="horse.nick_name").text-muted
+        div.text-right
+          a.btn.secondary(href="" ng-click="reactivate(horse.id)") Reactivate Horse

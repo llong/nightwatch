@@ -11,6 +11,23 @@ app.controller('horseController',
       console.log(horse);
       vm.loadingHorse = true;
     }
+
+    $scope.reactivate = function(horse){
+      $http.put(API + 'api/horse/deleted/' + horse.id, {
+        deleted: false,
+        active: true
+      })
+      .then(function(){
+        getDeactivatedHorses();
+      })
+      .catch(function(err){
+        if(err.status === 401){
+          $location.path('/login')
+        } else {
+          throw err;
+        }
+      })
+    }
     // *************** GET **********************
     vm.getHorses = function(){
       $http.get(API + 'api/horse')
@@ -31,6 +48,23 @@ app.controller('horseController',
     }
 
     vm.getHorses();
+
+    // GET Deactivated Horses
+    vm.deactivatedHorses = {};
+    vm.getDeactivatedHorses = function(){
+      $http.get(API + 'api/horse/deleted')
+      .then(function(res){
+        vm.deactivatedHorses = res.data;
+        console.log(vm.deactivatedHorses);
+      })
+      .catch(function(err){
+        if(err.status === 401){
+          $location.path('/login')
+        } else {
+          throw err;
+        }
+      })
+    }
 
     // *************** POST **********************
     vm.addHorse = function(){

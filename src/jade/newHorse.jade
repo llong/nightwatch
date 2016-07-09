@@ -43,13 +43,11 @@ ng-include(src="'assets/partials/navbar.html'" ng-init="back = true")
             input.stretch(type="text" ng-model="horse.birth_date")
       
       .row.m-t-2
-        .col.col-5-of-12.col-centered
-          label location
-          p
-            input(type="radio" name="location" value="myAddress")
-            span.m-l-1.m-r-3 My Address
-            input(type="radio" name="location" value="other")
-            span.m-l-1 Other
+        .col.col-5-of-12.col-centered(ng-controller="groupController")
+          label Horse group
+            p
+              select(ng-model="horse.group")
+                option(ng-repeat="group in groups")
           
       .row.m-t-1
         .col.col-4-of-12.col-push-1-of-12

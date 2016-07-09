@@ -7,25 +7,25 @@
         
         .alert.m-t-1.fade(ng-show="message.status === 'success' || message.status === 'failure'" ng-class="message.color") {{message.text}}
         
-      .col.col-4-of-12.col-centered
+      .col.col-4-of-12.col-push-2-of-12
         label.required Address
         p 
           input.stretch(type="text" ng-model="address.address.address1" required)
-      .col.col-4-of-12.col-centered
+      .col.col-4-of-12
         label Address 2
         p 
           input.stretch(type="text" placeholder="Optional" ng-model="address.address.address2") 
     .row
-      .col.col-4-of-12.col-centered
+      .col.col-3-of-12.col-push-2-of-12
         label.required city
         p 
           input.stretch(type="text" ng-model="address.address.city" required)
-      .col.col-4-of-12.col-centered
+      .col.col-3-of-12
         label.required state/province
         p 
           select.stretch
             option Select One
-      .col.col-4-of-12.col-centered
+      .col.col-2-of-12
         label.required postal code
         p 
           input.stretch(type="text" ng-model="address.address.postalCode" maxlength="5" ng-minlength="5" required) 

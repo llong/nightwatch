@@ -1,5 +1,4 @@
 app.controller('mainController',
-['$scope','$http','$localStorage','$location','authenticate','API',
 function($scope,$http,$localStorage,$location,authenticate,API){
 
 
@@ -33,4 +32,18 @@ function($scope,$http,$localStorage,$location,authenticate,API){
     $location.path('/login');
     console.log('sign out');
   }
-}]);
+
+  //Hide navbar on iOS devices
+    //Hide navbar on iOS devices
+    console.log(navigator.platform);
+    if(
+    navigator.platform === 'iPhone' ||
+    navigator.platform === 'iPad' ||
+    navigator.platform === 'iPod') {
+      console.log('iOS Device')
+      $scope.iOS = true;
+    } else {
+      $scope.iOS = false;
+      console.log('Non iOS Device');
+    }
+});
