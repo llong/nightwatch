@@ -31,7 +31,10 @@ app.controller('dashboardController', [
     getHorses();
 
     $scope.ediColor = function (horse) {
-        if (horse.edi_score < 4.0) {
+        if (horse.edi_score === null) {
+          this.horse.edi_score = '?.?';
+        }
+        else if (horse.edi_score < 4.0) {
             return 'label-success';
         } else if (horse.edi_score < 6.0) {
             return 'label-warning';
@@ -42,9 +45,6 @@ app.controller('dashboardController', [
 
     $scope.loading = true;
     $scope.getHorse = function(horse){
-      $scope.activeHorse = horse;
-      console.log(horse);
-      console.log($scope.activeHorse);
 
       $http.get(API + '/api/horse/' + horse.id + '/metric/latest')
       .then(function(res){
@@ -58,5 +58,4 @@ app.controller('dashboardController', [
         $scope.loading = false;
       })
     }
-
   }]);

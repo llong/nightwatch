@@ -1,0 +1,33 @@
+ng-include(src="'./assets/partials/navbar.html'")
+
+.container.m-t-1.m-b-3
+  .row
+    .col.col-12-of-12.col-centered
+      .card.clearfix
+        .row
+          .col.col-12-of-12
+            .metric-row
+              .icon
+                .avatar(style="background-image:url({{$parent.activeHorse.thumbnail_url}})")
+              div(ng-bind="$parent.activeHorse.registered_name")
+              .text-right.text-small Last Updated
+            hr
+            .button-group
+              button.btn.primary-outline() Hour
+              button.btn.primary-outline() Day
+              button.btn.primary-outline() Week
+              button.btn.primary-outline.active() Month
+              button.btn.primary-outline() Year
+      
+        .m-t-1
+        
+            canvas(id="heart_rate" class="chart chart-line" chart-data="data"
+chart-labels="labels" chart-series="series" chart-options="options"
+chart-dataset-override="datasetOverride" chart-click="onClick")
+
+            canvas.m-t-3(id="respiratory_rate" class="chart chart-line" chart-data="data"
+            chart-labels="labels" chart-series="series" chart-options="options"
+            chart-dataset-override="datasetOverride" chart-click="onClick")
+
+
+ng-include(src="'./assets/partials/footerbar.html'")

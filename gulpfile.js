@@ -43,6 +43,8 @@ gulp.task('scripts', function(){
     'src/javascripts/satellizer.js',
     'src/javascripts/ng-animate.js',
     'src/javascripts/modal-service.js',
+    'src/javascripts/charts.js',
+    'src/javascripts/angular-charts.js',
     'src/javascripts/app.js',
     'src/javascripts/services/*.js',
     'src/javascripts/directives/*.js',

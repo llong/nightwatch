@@ -1,0 +1,43 @@
+app.controller('biometricsController', function($scope,$http,API,$filter,$routeParams){
+
+//Get Horse
+var getHorses = function(){
+  $http.get(API + 'api/horses')
+  .then(function(res){
+    $scope.horses = res.data;
+    $scope.horse = $filter('filter')($scope.horses, function (d) {return d.id === parseInt($routeParams.id)})[0];
+  })
+}
+
+getHorses();
+
+
+// Chart
+    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+    $scope.series = ['Series A', 'Series B'];
+    $scope.data = [
+        [2.2,5.3,6.2,3.1,6.8,9.7,5.6]
+    ];
+    $scope.onClick = function (points, evt) {
+      console.log(points, evt);
+    };
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+    $scope.options = {
+      responsive: true,
+      lineTension: 0.1,
+      title: {
+        display: true,
+        text: 'EDI Score (Equine Distress Index)'
+      },
+      scales: {
+        yAxes: [
+          {
+            id: 'y-axis-1',
+            type: 'linear',
+            display: true,
+            position: 'left'
+          }
+        ]
+      }
+    };
+})

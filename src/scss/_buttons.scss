@@ -8,17 +8,23 @@ input[type=submit],button {
 
 .btn {
   background: transparent;
-  height: 2rem;
   border-radius: 1rem;
-  padding: 0 1rem;
+  padding: .5rem 1rem;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: inherit;
   font-weight: 200;
   cursor: pointer;
   color: $primary;
   text-align: center;
-  line-height: 2rem;
   display: inline-block;
+
+  &.text-small {
+    font-size: .75rem;
+  }
+
+  &.text-tiny {
+    font-size: .5rem;
+  }
 
   &:disabled {
     opacity: .5;
@@ -31,6 +37,15 @@ input[type=submit],button {
 
     &:hover {
       background: darken($primary,10%);
+    }
+  }
+  &.primary-outline {
+    background: $white;
+    color: $primary;
+    border: 1px solid $primary;
+
+    &:hover {
+      background: darken($white,10%);
     }
   }
 
@@ -53,8 +68,8 @@ input[type=submit],button {
   }
 
   &.secondary {
-    background: $lightest-gray;
-    color: $light-gray;
+    background: $light-gray;
+    color: $white;
   }
 
   &.danger {
@@ -64,5 +79,30 @@ input[type=submit],button {
     &:hover {
       background: darken($danger,10%);
     }
+  }
+}
+
+.button-group {
+  display: inline-block;
+
+  > .btn {
+    border-radius: 0;
+    padding: .5rem .75rem;
+    font-size: .75rem;
+  }
+
+  > .btn:first-of-type {
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+  }
+
+  > .btn:last-of-type {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+  }
+
+  > .btn.active {
+    background: $primary;
+    color: $white;
   }
 }

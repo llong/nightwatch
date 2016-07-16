@@ -13,12 +13,12 @@ app.controller('horseController',
     }
 
     $scope.reactivate = function(horse){
-      $http.put(API + 'api/horse/deleted/' + horse.id, {
-        deleted: false,
-        active: true
-      })
+      $http.put(API + 'api/horse/' + horse + '/enable')
       .then(function(){
-        getDeactivatedHorses();
+        vm.getHorses();
+      })
+      .finally(function(){
+        vm.getDeactivatedHorses();
       })
       .catch(function(err){
         if(err.status === 401){
@@ -60,6 +60,8 @@ app.controller('horseController',
       .catch(function(err){
         if(err.status === 401){
           $location.path('/login')
+        } else if (err.status === 404){
+          vm.deactivatedHorses = {};
         } else {
           throw err;
         }

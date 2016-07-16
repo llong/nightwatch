@@ -1,9 +1,5 @@
-// app.controller('loginController', [
-//   '$scope','$http','$localStorage','$location','authenticate',
-//   function($scope,$http,$localStorage,$location,authenticate){
-//
 
-app.controller('loginController', function($scope,$auth,$location,API){
+app.controller('loginController', function($scope,$auth,$location,API,$http){
   var vm = this;
   $scope.loggingIn = false;
 
@@ -29,4 +25,15 @@ app.controller('loginController', function($scope,$auth,$location,API){
       $scope.loggingIn = false;
     })
   }
+
+  // Check if user is logged in, if so send to dashboard
+  var checkLogin = function(){
+    $http.get(API + 'api/account')
+    .then(function(res){
+      if(res.status === 200){
+        $location.path('/');
+      }
+    })
+  }
+  checkLogin();
 });

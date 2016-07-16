@@ -24,6 +24,24 @@ app.controller('deviceController',
       });
     }
 
+    // Reactivate Device
+    $scope.reactivate = function(device){
+      $http.put(API + 'api/device/' + device + '/enable')
+      .then(function(){
+        vm.getDevices();
+      })
+      .finally(function(){
+        vm.deletedDevices = {};
+        vm.getDeletedDevices();
+      })
+      .catch(function(err){
+        if(err.status === 401){
+          $location.path('/login')
+        } else {
+          throw err;
+        }
+      })
+    }
 
 
     // *************** GET Devices **********************
@@ -132,5 +150,20 @@ app.controller('deviceController',
     }
 
 
-    // Modals
+    // *************** GET Deleted Devices **********************
+
+    vm.getDeletedDevices = function(){
+      $http.get(API + 'api/device/deleted')
+      .then(function(res){
+        vm.deletedDevices = res.data;
+        console.log(res.data);
+      })
+      .catch(function(err){
+        if(err.status === 401){
+          $location.path('/login')
+        } else {
+          throw err;
+        }
+      })
+    }
   });

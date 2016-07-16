@@ -14,9 +14,10 @@ ng-include(src="'assets/partials/navbar.html'")
           a(href="javascript:void(0)" ng-click="sortType = 'edi_score'; sortReverse = !sortReverse") EDI
       .spinner(ng-show="loading == true") 
         span Loading Horses
-      .horse-row.fade(ng-repeat="horse in horses | orderBy:sortType:sortReverse" ng-click="getHorse(horse)" ng-show="horses.length >= 1")
+      .horse-row.fade(ng-repeat="horse in horses | orderBy:sortType:sortReverse" ng-click="getHorse(horse);$parent.setHorse(horse)" ng-show="horses.length >= 1")
         div(style="width:2.5rem")
-          .avatar(style="background-image:url({{horse.thumbnail_url}})")
+          .avatar(style="background-image:url({{horse.thumbnail_url}})" ng-hide="horse.thumbnail_url === null")
+          .avatar.nw-horse(ng-show="horse.thumbnail_url === null")
         div
           span(ng-bind="horse.registered_name")
           br
@@ -30,7 +31,7 @@ ng-include(src="'assets/partials/navbar.html'")
     .card.metrics
       h5.text-center(ng-show="!activeHorse") Select a horse to view its metrics
       div(ng-if="activeHorse")
-          .horse-row
+          .metric-row
             div(style="width:2.5rem")
               .avatar(style="background-image:url({{activeHorse.thumbnail_url}})")
             div
@@ -39,12 +40,13 @@ ng-include(src="'assets/partials/navbar.html'")
               span #[small Last Updated]
               br
               span(ng-bind="metrics.edi_score" ng-class="ediColor(horse)")
-          .horse-row
+          .metric-row
             div.p-t-1
+              hr
               span EDI&trade;
               span.nw-help
           
-          .horse-row
+          .metric-row
             .gauge
               img(src="assets/images/neddle_1@2x.png", alt="gauge needle", style="transform: rotate({{activeHorse.edi_score * 18.0}}deg) scale(.65)")
             .gauge-edi.text-right
@@ -103,3 +105,5 @@ ng-include(src="'assets/partials/navbar.html'")
               .circle(ng-class="ediColor(activeHorse)")
                 div(ng-bind="metrics.behavior[0].roll_count")
               .gray-bar
+
+ng-include(ng-show="activeHorse" src="'./assets/partials/footerbar.html'")

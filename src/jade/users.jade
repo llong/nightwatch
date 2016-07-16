@@ -1,0 +1,81 @@
+ng-include(src="'assets/partials/navbar.html'")
+
+.container
+  .card.clearfix
+    // Add Devices
+    h4 Add User
+    hr.m-b-1
+    .row(ng-model="AddUserForm")
+      .col.col-4-of-12.col-push-2-of-12
+        label.required username
+        input.stretch(type="text")
+        
+      .col.col-3-of-12
+        label.required role
+        p
+          select.stretch(id="role")
+            option(value="manager") Manager
+            option(value="caretaker") Caretaker
+            
+      .col.col-4-of-12.col-push-2-of-12
+        label.required first name
+        p
+          input.stretch(type="text")
+        
+      .col.col-4-of-12
+        label.required last name
+        p
+          input.stretch(type="text")
+    
+      .col.col-4-of-12.col-push-2-of-12
+        label.required phone
+        p
+          input.stretch(type="text")
+        
+      .col.col-4-of-12
+        label email address
+        p
+          input.stretch(type="text")
+          
+    .row.m-t-2
+      .col.col-4-of-12.float-right
+        p
+          button.btn.success.stretch(ng-click="showUserForm()") Add User
+
+    
+    // List my Devices
+  .spinner.m-t-1(ng-show="device.loadingDevice == true")
+    span &nbsp; Loading Devices
+  .alert.success.m-t-1.fade(ng-show="device.message.status === true" ng-bind="device.message.text")
+  .alert.danger.m-t-1.fade(ng-show="device.message.status === 'error'")
+    span(ng-bind="device.message.text")
+  
+  .row.m-t-1
+    .col.col-6-of-12.fade(ng-repeat="dev in device.devices")
+      .card.m-b-1
+        a.text-success.nw-speaker_phone(href="") &nbsp;
+        span(ng-hide="updateDevice == true") {{dev.nick_name}}
+        input(type="text" ng-show="updateDevice == true" ng-model="device.whichDevice.nick_name" placeholder="Nickname")
+        
+        span.float-right
+          a.nw-pencil.text-muted(href="" ng-click="device.getDevice($index);updateDevice = true") &nbsp;
+          a.nw-cross.text-muted(href="" ng-click="device.modal($index)")
+        hr
+        
+        div.banner  
+          span
+            strong Serial: &nbsp;
+            span(ng-hide="updateDevice == true" ng-bind="dev.serial_number")
+            input(ng-show="updateDevice == true" type="text" ng-model="device.whichDevice.serial_number")
+          
+        .m-t-1
+          label assigned to
+          div
+            select.stretch
+              option horses
+          .m-t-1
+            .row
+              .col.col-6-of-12
+                a.btn.secondary.stretch(href="" ng-show="updateDevice == true" ng-click="updateDevice = false") cancel  
+              .col.col-6-of-12
+                a.btn.primary.stretch(href="" ng-show="updateDevice == true" ng-click="device.updateDevice()") update device

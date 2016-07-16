@@ -32,4 +32,6 @@ nav.navbar(ng-hide="iOS === true")
         li
           a(href="#/user" ng-click="userMenu()") My Account
         li
+          a(href="#/users" ng-click="userMenu()") My Users
+        li
           a(href="javascript:void(0)" ng-click="$parent.signOut();userMenu()") Sign Out

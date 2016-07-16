@@ -36,7 +36,7 @@
 
   .toggle-btn {
     display: none;
-    color: $light-gray;
+    color: $white;
     font-size: 2rem;
     vertical-align: middle;
   }
@@ -163,6 +163,45 @@ div.gauge-edi.text-right {
   vertical-align: top;
   > div {
     font-size: 2rem;
+  }
+}
+
+
+// ************ FOOTERBAR *********************
+
+
+.footerbar {
+  position: fixed;
+  bottom: 0;
+  background: #e6e6e6;
+  border-top: 1px solid $light-gray;
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  line-height: 3rem;
+  text-align: center;
+  z-index: 999;
+
+  > a {
+    flex-grow: 1;
+    color: $black;
+    &:hover {
+      background: $lightest-gray;
+    }
+
+    &.active {
+      color: $white;
+      background: $dark;
+
+      &:before {
+        content: '';
+        height: 4px;
+        display: block;
+        background: $success;
+        position: relative;
+        top: -4px;;
+      }
+    }
   }
 }
 

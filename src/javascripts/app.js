@@ -1,6 +1,6 @@
 // Define App
 var app = angular.module('app',
-['ngRoute','ngStorage','satellizer','ngAnimate','vesparny.fancyModal',
+['ngRoute','ngStorage','satellizer','ngAnimate','vesparny.fancyModal','chart.js'
 ]);
 
 app.value('API','https://portaldev.nightwatch24.com:44433/');
@@ -85,6 +85,28 @@ function($routeProvider,$locationProvider,$authProvider){
       templateUrl: 'assets/partials/newHorse.html',
       controller: 'horseController as horse',
       activetab: 'horses'
+    })
+    .when('/users', {
+      templateUrl: 'assets/partials/users.html',
+      controller: 'usersController as users'
+    })
+    .when('/horses/:id/edi', {
+      templateUrl: 'assets/partials/edi.html',
+      controller: 'ediController as edi',
+      activetab: 'horses',
+      activeFooter: 'edi'
+    })
+    .when('/horses/:id/biometrics', {
+      templateUrl: 'assets/partials/biometrics.html',
+      controller: 'biometricsController as biometrics',
+      activetab: 'horses',
+      activeFooter: 'biometrics'
+    })
+    .when('/horses/:id/behaviors', {
+      templateUrl: 'assets/partials/behaviors.html',
+      controller: 'behaviorsController as behaviors',
+      activetab: 'horses',
+      activeFooter: 'behaviors'
     })
     .otherwise({redirectTo:'/login'});
 

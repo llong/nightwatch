@@ -18,7 +18,10 @@ ng-include(src="'assets/partials/navbar.html'")
           .col.col-4-of-12
             label &nbsp;  
             input.btn.success.stretch(type="submit" ng-disabled="deviceForm.$invalid")
-        
+  
+  div.m-t-1.m-b-1.text-right
+    button.btn.text-small.secondary(ng-click="device.getDeletedDevices()") Show Deactivated Devices
+    
     // List my Devices
   .spinner.m-t-1(ng-show="device.loadingDevice == true")
     span &nbsp; Loading Devices
@@ -55,3 +58,30 @@ ng-include(src="'assets/partials/navbar.html'")
                 a.btn.secondary.stretch(href="" ng-show="updateDevice == true" ng-click="updateDevice = false") cancel  
               .col.col-6-of-12
                 a.btn.primary.stretch(href="" ng-show="updateDevice == true" ng-click="device.updateDevice()") update device
+                
+  
+  // Show deleted devices
+  .banner(ng-show="device.deletedDevices.length") Deleted Devices
+  .row.m-t-1
+    
+    
+    .col.col-6-of-12.fade(ng-repeat="dev in device.deletedDevices")
+      .card.m-b-1
+        span.nw-speaker_phone(href="" ng-click="reactivate(dev.id)") &nbsp;
+        span(ng-hide="updateDevice == true") {{dev.nick_name}}
+        input(type="text" ng-show="updateDevice == true" ng-model="device.whichDevice.nick_name" placeholder="Nickname")
+        
+        span.float-right
+          //a.nw-pencil.text-muted(href="" ng-click="device.getDevice($index);updateDevice = true") &nbsp;
+          //a.nw-cross.text-muted(href="" ng-click="device.modal($index)")
+        hr
+        
+        div.banner  
+          span
+            strong Serial: &nbsp;
+            span(ng-hide="updateDevice == true" ng-bind="dev.serial_number")
+            input(ng-show="updateDevice == true" type="text" ng-model="device.whichDevice.serial_number")
+          
+        .m-t-1
+          a.stretch.btn.primary(reactivate(dev.id)) Reactivate
+          

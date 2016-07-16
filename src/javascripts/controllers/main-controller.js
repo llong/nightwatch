@@ -1,6 +1,14 @@
 app.controller('mainController',
-function($scope,$http,$localStorage,$location,authenticate,API){
+function($scope,$http,$localStorage,$location,authenticate,API,$route){
 
+  $scope.$route = $route;
+  $scope.setHorse = function(horse){
+    $localStorage.activeHorse = '';
+    $localStorage.activeHorse = horse;
+    $scope.activeHorse = $localStorage.activeHorse;
+    console.log(horse);
+    console.log($scope.activeHorse);
+  }
 
   $scope.getData = function(){
     $http.get(API + 'api/account',{
