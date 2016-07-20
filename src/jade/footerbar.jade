@@ -1,4 +1,4 @@
-.footerbar
+.footerbar(ng-hide="iOS === true")
   a(href="#/horses/{{activeHorse.id}}/edi" ng-class="{active: $route.current.activeFooter == 'edi'}") EDI&trade;
   a(href="#/horses/{{activeHorse.id}}/biometrics" ng-class="{active: $route.current.activeFooter == 'biometrics'}") Biometrics
   a(href="#/horses/{{activeHorse.id}}/behaviors" ng-class="{active: $route.current.activeFooter == 'behaviors'}") Behaviors
