@@ -273,6 +273,11 @@ div.gauge-edi.text-right {
     line-height: 2.25rem;
     text-align: center;
   }
+
+  &.large {
+    width: 6rem;
+    height: 6rem;
+  }
 }
 
 .edi-circle {

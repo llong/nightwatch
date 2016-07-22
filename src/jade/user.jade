@@ -84,8 +84,10 @@ ng-include(src="'assets/partials/navbar.html'")
             input.btn.primary.stretch(type="submit" ng-disabled="emailForm.$invalid" value="add email")
     
   
-  .card.m-t-1
+  .card.m-t-1.clearfix
+    
     h4.text-muted.text-uppercase shipping address
+    .alert.m-t-1.fade(ng-show="message.status === 'success' || message.status === 'failure'" ng-class="message.color") {{message.text}}
     .row.m-t-2.m-b-1
       .col.col-3-of-12
         label.required address
@@ -119,10 +121,13 @@ ng-include(src="'assets/partials/navbar.html'")
           select.stretch(name="" ng-model="user.profile.shipping_address.countryCode")
             //option(value="US" selected="selected") United States
             option(ng-repeat="country in user.countries" value="{{country.code}}") {{country.name}}
-            
+    .row
+      .col.col-4-of-12.col-push-8-of-12
+        button.btn.primary.stretch(ng-click="updateAddress(user.profile.shipping_address)") Update Shipping Addresss       
 
   .card.m-t-1.m-b-1
     h4.text-muted.text-uppercase billing address
+    .alert.m-t-1.fade(ng-show="message.status === 'success' || message.status === 'failure'" ng-class="message.color") {{message.text}}
     .row.m-t-2.m-b-1
       .col.col-3-of-12
         label.required address
@@ -156,4 +161,6 @@ ng-include(src="'assets/partials/navbar.html'")
           select.stretch(name="" ng-model="user.profile.billing_address.countryCode")
             option(ng-repeat="country in user.countries" value="{{country.code}}") {{country.name}}
             
-  
+    .row
+      .col.col-4-of-12.col-push-8-of-12
+        button.btn.primary.stretch(ng-click="updateAddress(user.profile.billing_address)") Update Billing Addresss       

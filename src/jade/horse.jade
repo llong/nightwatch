@@ -2,10 +2,15 @@ ng-include(src="'assets/partials/navbar.html'" ng-init="back = true")
 
 .container
   .card
+    .alert.success.text-center(ng-show="horse.successMessage === true") Horse updated successfully
     .spinner(ng-show="horse.loadingHorse == true")
       span &nbsp; Loading Horse Profile
     div(ng-show="horse.loadingHorse == false")
       form.row
+        .col.col-6-of-12.col-centered.m-b-1.text-center
+          .avatar.large(style="background-image:url({{horse.whichHorse.thumbnail_url}})")
+      
+      .row
           .col.col-4-of-12.col-push-2-of-12
             label.required registered name
             p
@@ -184,7 +189,7 @@ ng-include(src="'assets/partials/navbar.html'" ng-init="back = true")
             a.btn.secondary.stretch(ng-click="horse.removeHorse(horse.whichHorse.id)") Remove Horse
           
           .col.col-4-of-12
-            input.btn.primary.stretch(type="submit" ng-click="horse.updateHorse()" value="save changes")
+            input.btn.primary.stretch(type="submit" ng-click="horse.updateHorse(horse.whichHorse.id)" value="save changes")
       
 
 script(src="assets/javascripts/accordion.js")
