@@ -89,8 +89,8 @@ app.controller('horseController',
     }
 
     // *************** PUT **********************
-    vm.updateHorse = function(){
-      $http.put(API + 'api/horse/' + vm.horses[horse].id, {
+    vm.updateHorse = function(horse){
+      $http.put(API + 'api/horse/' + horse, {
         registeredName: vm.whichHorse.registered_name,
         nickName: vm.whichHorse.nick_name,
         sex: vm.whichHorse.sex,

@@ -31,6 +31,7 @@ app.controller('dashboardController', [
     getHorses();
 
     $scope.ediColor = function (horse) {
+
         if (horse.edi_score === null) {
           this.horse.edi_score = '?.?';
         }

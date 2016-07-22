@@ -27,7 +27,7 @@ app.controller('addressController', function($scope,$http,API,countries,$locatio
 
   // Update Shipping Address
   $scope.updateShippingAddress = function(){
-    $http.put($scope.shippingAddress.uri, vm.address);
+    $http.put($scope.shippingAddress.uri, vm.address)
     console.log(vm.address);
 
     $scope.message = {
@@ -81,7 +81,5 @@ app.controller('addressController', function($scope,$http,API,countries,$locatio
       },6000);
 
     })
-
-
   }
 });

@@ -83,5 +83,5 @@ ng-include(src="'assets/partials/navbar.html'")
             input(ng-show="updateDevice == true" type="text" ng-model="device.whichDevice.serial_number")
           
         .m-t-1
-          a.stretch.btn.primary(reactivate(dev.id)) Reactivate
+          a.stretch.btn.primary(ng-click="reactivate(dev.id)") Reactivate
           

@@ -1,4 +1,4 @@
-app.controller('userController',['$scope','$http','API','$location','countries', function($scope,$http,API,$location,countries){
+app.controller('userController',['$scope','$http','API','$location','countries','$timeout', function($scope,$http,API,$location,countries,$timeout){
   var API = API;
   var vm = this;
 
@@ -103,4 +103,38 @@ app.controller('userController',['$scope','$http','API','$location','countries',
     $scope.AddUserForm = true;
     console.log('click');
   }
+
+
+  // ******** Update Address *********
+  // Admin update address (addressType = either shipping_address or billing_address)
+  $scope.updateAddress = function(addressType){
+    console.log(addressType.uri);
+    $http.put(addressType.uri, addressType)
+    .then(function(){
+        console.log(vm.addressType);
+
+        $scope.message = {
+          status: 'success',
+          color: 'success',
+          text: 'Address successfully updated'
+        }
+    })
+    .catch(function(err){
+      if (err.status === 401) {
+        $location.path('/login')
+      } else {
+        $scope.message = {
+          status: 'failure',
+          color: 'danger',
+          text: err
+        }
+      }
+    })
+    .finally(function(){
+      $timeout(function() {
+        $scope.message.status = null;
+      },6000);
+    })
+  }
+
 }]);
