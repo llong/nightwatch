@@ -3,12 +3,17 @@ var app = angular.module('app',
 ['ngRoute','ngStorage','satellizer','ngAnimate','vesparny.fancyModal','chart.js'
 ]);
 
-app.value('API','https://portaldev.nightwatch24.com:44433/');
+if( typeof apiRoot === 'undefined' )
+{
+  apiRoot = 'http://localhost/';
+}
+
+app.value('API',apiRoot);
 
 app.config(['$routeProvider','$locationProvider','$authProvider','$httpProvider',
 function($routeProvider,$locationProvider,$authProvider){
 
-  $authProvider.loginUrl = 'https://portaldev.nightwatch24.com:44433/api/login';
+  $authProvider.loginUrl = apiRoot + '/api/login';
   $authProvider.tokenName = 'access_token';
   $routeProvider
     .when('/', {
