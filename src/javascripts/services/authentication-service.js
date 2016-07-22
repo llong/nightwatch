@@ -1,11 +1,11 @@
 app.factory('authenticate', function(){
-  var API = 'https://portaldev.nightwatch24.com:44433/';
+  var API = apiRoot;
   return API;
 });
 
 // Horse
 app.factory('horseService',['$http', function($http) {
-    var API = 'https://portaldev.nightwatch24.com:44433/';
+    var API = apiRoot;
     var getHorses = {
         async: function() {
             // $http returns a promise, which has a then function, which also returns a promise
