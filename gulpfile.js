@@ -38,6 +38,12 @@ gulp.task('jade-watch', ['templates'], reload);
 
 //Compile JavaScripts and minify
 gulp.task('scripts', function(){
+
+  // app config
+  gulp.src('src/javascripts/app-config.js')
+  .pipe(uglify({mangle:false}))
+  .pipe(gulp.dest('assets/javascripts'));
+
   return gulp.src([
     'src/javascripts/ng-storage.js',
     'src/javascripts/satellizer.js',
@@ -59,7 +65,7 @@ gulp.task('scripts', function(){
 
 
 // Run this to start server with livereload
-gulp.task('default',['sass','templates'], function(){
+gulp.task('default',['sass','templates','scripts'], function(){
   browserSync({
     server: './',
     middleware: [compression()]
