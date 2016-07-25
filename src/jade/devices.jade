@@ -1,5 +1,7 @@
 ng-include(src="'assets/partials/navbar.html'")
 
+.alert.success.m-t-1.fade(ng-show="device.message.status === true" ng-bind="device.message.text")
+.alert.danger.m-t-1.fade(ng-show="device.message.status === 'error'")
 .container
   .row
     // Add Devices
@@ -25,9 +27,6 @@ ng-include(src="'assets/partials/navbar.html'")
     // List my Devices
   .spinner.m-t-1(ng-show="device.loadingDevice == true")
     span &nbsp; Loading Devices
-  .alert.success.m-t-1.fade(ng-show="device.message.status === true" ng-bind="device.message.text")
-  .alert.danger.m-t-1.fade(ng-show="device.message.status === 'error'")
-    span(ng-bind="device.message.text")
   
   .row.m-t-1
     .col.col-6-of-12.fade(ng-repeat="dev in device.devices")

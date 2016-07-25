@@ -145,18 +145,22 @@ hr {
 // Alerts
 
 .alert {
-  width: 100%;
+  display: inline-block;
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
   padding: 1rem;
   color: $black;
   border-radius: $border-radius;
+  z-index: 99;
 
   &.success {
-    background: rgba($success, .1);
+    background: lighten($success, 30%);
     color: darken($success, 10%);
   }
 
   &.danger {
-    background: rgba($danger, .1);
+    background: lighten($danger, 30%);
     color: darken($danger, 10%);
   }
 }

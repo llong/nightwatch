@@ -7,7 +7,8 @@ ng-include(src="'assets/partials/navbar.html'")
       
       div.horse-row.fade(ng-repeat="horse in horse.horses")
         div(style="width:2.5rem")
-          .avatar(style="background-image:url({{horse.thumbnail_url}})")
+          .avatar(ng-hide="horse.thumbnail_url === null" style="background-image:url({{horse.thumbnail_url}})")
+          .avatar.nw-horse(ng-show="horse.thumbnail_url === null")
         div(style="vertical-align:middle" ng-click="viewHorse($index)")
           span(ng-bind="horse.registered_name") 
           div(ng-bind="horse.nick_name").text-muted
