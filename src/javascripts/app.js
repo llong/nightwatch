@@ -113,7 +113,15 @@ function($routeProvider,$locationProvider,$authProvider){
       activetab: 'horses',
       activeFooter: 'behaviors'
     })
-    .otherwise({redirectTo:'/login'});
+    .when('/notifications', {
+      templateUrl: 'assets/partials/notifications.html',
+      controller: 'notificationsController as notifications'
+    })
+    .when('/groups', {
+      templateUrl: 'assets/partials/groups.html',
+      controller: 'groupController as group'
+    })
+    .otherwise({redirectTo:'/'});
 
     //$locationProvider.html5Mode(true);
 }]);

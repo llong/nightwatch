@@ -1,0 +1,56 @@
+ng-include(src="'assets/partials/navbar.html'")
+
+.container(style="max-width:40rem")
+    
+    .card
+      .spinner(ng-show="horse.loadingHorse == true") &nbsp; Loading Groups
+      h4.m-b-1 Create Group
+      
+      .row.clearfix
+        .col.col-6-of-12
+          input.stretch(placeholder="Enter Group Name" type="text")
+        .col.col-6-of-12
+          a.btn.success.stretch(href="#/horses/new") Add Group
+    
+    .card.m-t-1
+      h4.m-b-2 My  Groups
+      div.metric-row.fade()
+        div(style="vertical-align:middle")
+          span() Weekdays
+          div(ng-bind="horse.nick_name").text-muted
+        .text-small.text-right
+          a.nw-pencil.m-r-1(href="") 
+          a.nw-cross(href="")
+      hr
+      
+      div.metric-row.fade()
+        div(style="vertical-align:middle")
+          span() Weekdays
+          div(ng-bind="horse.nick_name").text-muted
+        .text-small.text-right
+          a.nw-pencil.m-r-1(href="") 
+          a.nw-cross(href="")
+          
+    .m-t-1.text-right
+      a.btn.secondary.text-small( href="" ng-click="horse.getDeactivatedHorses()") Show Deactivated Groups
+    
+    .card.m-t-1.m-b-1
+      h4 Deactivated  Groups
+      hr
+      
+      div.horse-row.fade(ng-repeat="horse in horse.deactivatedHorses")
+        div(style="width:2.5rem")
+          .avatar(style="background-image:url({{horse.thumbnail_url}})")
+        div(style="vertical-align:middle")
+          span(ng-bind="horse.registered_name") 
+          div(ng-bind="horse.nick_name").text-muted
+        div.text-right
+          a.btn.secondary(href="" ng-click="reactivate(horse.id)") Reactivate Horse
+      
+      
+      div.horse-row.fade()
+        div(style="vertical-align:middle")
+          span() Group Name
+          div(ng-bind="horse.nick_name").text-muted
+        .text-small.text-right
+          a.btn.primary(href="" ng-click="reactivate(horse.id)") Reactivate Group
